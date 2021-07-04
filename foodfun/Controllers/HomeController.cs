@@ -13,9 +13,10 @@ namespace foodfun.Controllers
         public HomeController()
         {
             db = new GoPASTAEntities();
+
         }
 
-        [LoginAuthorize(RoleList ="")]
+        [LoginAuthorize(RoleList = "")]
         public ActionResult Index()
         {
             return View();
@@ -23,15 +24,18 @@ namespace foodfun.Controllers
 
         public ActionResult About()
         {
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            var data = db.Company.Where(m => m.rowid == 1).FirstOrDefault();
 
-            return View();
+            
+            return View(data);
         }
+
     }
 }

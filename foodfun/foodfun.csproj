@@ -153,6 +153,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategorysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductBackController.cs" />
     <Compile Include="Areas\Admin\Controllers\PropertysController.cs" />
@@ -168,35 +169,35 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Carts.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Categorys.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Concepts.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Carts\CartTemp.cs" />
-    <Compile Include="Models\GoPASTA.Context.cs">
+    <Compile Include="Models\GoPASTAModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GoPASTA.Context.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GoPASTA.cs">
+    <Compile Include="Models\GoPASTAModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GoPASTA.Designer.cs">
+    <Compile Include="Models\GoPASTAModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GoPASTA.edmx</DependentUpon>
+      <DependentUpon>GoPASTAModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\MealService.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MetaData\Categorys.cs" />
     <Compile Include="Models\MetaData\Orders.cs" />
@@ -206,40 +207,37 @@
     <Compile Include="Models\MetaData\Users.cs" />
     <Compile Include="Models\MetaData\Carts.cs" />
     <Compile Include="Models\Orders.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrdersDetails.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderStatus.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Payments.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Products.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductsProperty.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Profiles.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProgramList.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Propertys.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\CartViewModel.cs" />
     <Compile Include="Models\ViewModel\ForgetPasswordViewModel.cs" />
@@ -336,6 +334,7 @@
     <Content Include="AdminBack\ui-tabs.html" />
     <Content Include="AdminBack\ui-typgraphy.html" />
     <Content Include="AdminBack\widgets.html" />
+    <Content Include="Areas\Admin\Views\Company\CompanyEdit.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -418,15 +417,15 @@
     <Content Include="img\product\B02\B020002.jpg" />
     <Content Include="img\product\C01\C010001.jpg" />
     <Content Include="img\product\C01\C010002.jpg" />
-    <Content Include="Models\GoPASTA.Context.tt">
+    <Content Include="Models\GoPASTAModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GoPASTA.edmx</DependentUpon>
-      <LastGenOutput>GoPASTA.Context.cs</LastGenOutput>
+      <DependentUpon>GoPASTAModel.edmx</DependentUpon>
+      <LastGenOutput>GoPASTAModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\GoPASTA.tt">
+    <Content Include="Models\GoPASTAModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GoPASTA.edmx</DependentUpon>
-      <LastGenOutput>GoPASTA.cs</LastGenOutput>
+      <DependentUpon>GoPASTAModel.edmx</DependentUpon>
+      <LastGenOutput>GoPASTAModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.zh-TW.min.js" />
@@ -444,13 +443,6 @@
     <Content Include="Areas\Admin\Views\ProductBack\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductBack\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <EntityDeploy Include="Models\GoPASTA.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GoPASTA.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\GoPASTA.edmx.diagram">
-      <DependentUpon>GoPASTA.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\Categorys\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Categorys\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categorys\Index.cshtml" />
@@ -462,6 +454,13 @@
     <Content Include="Areas\Staff\Views\StaffHome\Index.cshtml" />
     <Content Include="Areas\Staff\Views\StaffHome\_PartialOrderBox.cshtml" />
     <Content Include="Areas\Staff\Views\StaffOrder\Here.cshtml" />
+    <EntityDeploy Include="Models\GoPASTAModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GoPASTAModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\GoPASTAModel.edmx.diagram">
+      <DependentUpon>GoPASTAModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\datepicker-zh-TW.js" />
     <Content Include="Scripts\datepicker.js" />
@@ -761,7 +760,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="_master\assets\css\style.map" />
     <Content Include="_master\assets\fonts\fa-brands-400.eot" />
     <Content Include="_master\assets\fonts\fa-brands-400.ttf" />
@@ -871,6 +869,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\MemberOrder\Index.cshtml" />
     <Content Include="Views\MemberOrder\_PartialOrder.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
