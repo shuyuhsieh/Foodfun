@@ -387,6 +387,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\about\at01.jpg" />
+    <Content Include="img\about\at02.jpg" />
+    <Content Include="img\about\at03.jpg" />
+    <Content Include="img\about\at04.jpg" />
+    <Content Include="img\about\val01.jpg" />
+    <Content Include="img\about\val02.jpg" />
+    <Content Include="img\about\val03.jpg" />
+    <Content Include="img\about\val04.jpg" />
+    <Content Include="img\about\val05.jpg" />
     <Content Include="img\drink\billy-kwok-vfiA7rRtjWo-unsplash.jpg" />
     <Content Include="img\drink\danielle-macinnes-IuLgi9PWETU-unsplash.jpg" />
     <Content Include="img\drink\demi-deherrera-L-sm1B4L1Ns-unsplash.jpg" />
