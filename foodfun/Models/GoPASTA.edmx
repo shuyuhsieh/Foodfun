@@ -34,12 +34,12 @@
           <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="company_id" Type="int" />
           <Property Name="brandname" Type="nvarchar" MaxLength="50" />
-          <Property Name="tel" Type="int" />
+          <Property Name="tel" Type="nvarchar" MaxLength="50" />
           <Property Name="fax" Type="nvarchar" MaxLength="50" />
           <Property Name="address" Type="nvarchar" MaxLength="50" />
           <Property Name="opentime" Type="time" Precision="0" />
           <Property Name="closetime" Type="time" Precision="0" />
-          <Property Name="public_holiday" Type="date" />
+          <Property Name="public_holiday" Type="nvarchar" MaxLength="50" />
           <Property Name="logoimage_path" Type="nvarchar" MaxLength="50" />
           <Property Name="indeximage_path" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -74,7 +74,7 @@
           <Property Name="total" Type="decimal" Precision="18" Scale="4" />
           <Property Name="orderstatus_no" Type="nvarchar" MaxLength="50" />
           <Property Name="mealservice_no" Type="nvarchar" MaxLength="50" />
-          <Property Name="SchedulOrderTime" Type="datetime" />
+          <Property Name="SchedulOrderTime" Type="datetime" Nullable="false" />
           <Property Name="table_no" Type="nvarchar" MaxLength="50" />
           <Property Name="paid_no" Type="nvarchar" MaxLength="50" />
           <Property Name="receive_name" Type="nvarchar" MaxLength="50" />
@@ -365,10 +365,10 @@
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="Orders" EntityType="GoPASTAModel.Orders" />
           <EntitySet Name="Products" EntityType="GoPASTAModel.Products" />
-          <EntitySet Name="Company" EntityType="GoPASTAModel.Company" />
           <EntitySet Name="Concepts" EntityType="GoPASTAModel.Concepts" />
           <EntitySet Name="Profiles" EntityType="GoPASTAModel.Profiles" />
           <EntitySet Name="ProgramList" EntityType="GoPASTAModel.ProgramList" />
+          <EntitySet Name="Company" EntityType="GoPASTAModel.Company" />
         </EntityContainer>
         <EntityType Name="Orders">
           <Key>
@@ -383,7 +383,7 @@
           <Property Name="total" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="orderstatus_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="mealservice_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SchedulOrderTime" Type="DateTime" Precision="3" />
+          <Property Name="SchedulOrderTime" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="table_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="paid_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="receive_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -416,22 +416,6 @@
           <Property Name="ishot" Type="Boolean" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="company_id" Type="Int32" />
-          <Property Name="brandname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="tel" Type="Int32" />
-          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="opentime" Type="Time" Precision="0" />
-          <Property Name="closetime" Type="Time" Precision="0" />
-          <Property Name="public_holiday" Type="DateTime" Precision="0" />
-          <Property Name="logoimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="indeximage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Concepts">
           <Key>
             <PropertyRef Name="rowid" />
@@ -460,6 +444,22 @@
           <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_id" Type="Int32" />
+          <Property Name="brandname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="opentime" Type="Time" Precision="0" />
+          <Property Name="closetime" Type="Time" Precision="0" />
+          <Property Name="public_holiday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="logoimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="indeximage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -642,23 +642,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Company">
-            <EntityTypeMapping TypeName="GoPASTAModel.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="indeximage_path" ColumnName="indeximage_path" />
-                <ScalarProperty Name="logoimage_path" ColumnName="logoimage_path" />
-                <ScalarProperty Name="public_holiday" ColumnName="public_holiday" />
-                <ScalarProperty Name="closetime" ColumnName="closetime" />
-                <ScalarProperty Name="opentime" ColumnName="opentime" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="fax" ColumnName="fax" />
-                <ScalarProperty Name="tel" ColumnName="tel" />
-                <ScalarProperty Name="brandname" ColumnName="brandname" />
-                <ScalarProperty Name="company_id" ColumnName="company_id" />
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Concepts">
             <EntityTypeMapping TypeName="GoPASTAModel.Concepts">
               <MappingFragment StoreEntitySet="Concepts">
@@ -687,6 +670,23 @@
                 <ScalarProperty Name="pro_no" ColumnName="pro_no" />
                 <ScalarProperty Name="filter_role" ColumnName="filter_role" />
                 <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="GoPASTAModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="indeximage_path" ColumnName="indeximage_path" />
+                <ScalarProperty Name="logoimage_path" ColumnName="logoimage_path" />
+                <ScalarProperty Name="public_holiday" ColumnName="public_holiday" />
+                <ScalarProperty Name="closetime" ColumnName="closetime" />
+                <ScalarProperty Name="opentime" ColumnName="opentime" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="brandname" ColumnName="brandname" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>

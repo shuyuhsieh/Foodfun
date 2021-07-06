@@ -23,7 +23,7 @@ namespace foodfun.Models
         public Nullable<decimal> total { get; set; }
         public string orderstatus_no { get; set; }
         public string mealservice_no { get; set; }
-        public Nullable<System.DateTime> SchedulOrderTime { get; set; }
+        public System.DateTime SchedulOrderTime { get; set; }
         public string table_no { get; set; }
         public string paid_no { get; set; }
         public string receive_name { get; set; }
