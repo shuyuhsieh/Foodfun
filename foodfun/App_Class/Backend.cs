@@ -42,6 +42,7 @@ public static class Backend
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
             string str_name = "";
+           
 
             //var data = repoAppCode.ReadSingle(m => m.type_no == typeNo && m.mno == codeNo);
             //var data = db.Products.Where(m => m.category_no == typeNo && m.product_no == codeNo);
@@ -50,15 +51,41 @@ public static class Backend
             //return str_name;
 
             var model = db.Categorys.Where(m => m.category_no == typeNo).FirstOrDefault();
-            if (model!=null)
+           
+            if (model != null)
             {
                 str_name = model.category_name;
+               
             }
             return str_name;
 
+
+
+
         }
 
+
     }
+    public static string GetCodeName1(string typeNo)
+    {
+
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+
+            string str1_name = "";
+            var model_roleno = db.Roles.Where(m => m.role_no == typeNo).FirstOrDefault();
+
+            if (model_roleno != null)
+            {
+               
+                str1_name = model_roleno.remark;
+            }
+        
+            return str1_name;
+
+        }
+    }
+
 
     //下拉選單
     public static List<SelectListItem> CtgryDropdownList()
