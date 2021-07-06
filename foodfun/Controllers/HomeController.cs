@@ -29,9 +29,9 @@ namespace foodfun.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            var data = db.Company.Where(m => m.rowid == 1).FirstOrDefault();
 
-            return View();
+            return View(data);
         }
     }
 }

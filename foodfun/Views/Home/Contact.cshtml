@@ -1,46 +1,64 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model foodfun.Models.Company
+
+@{
+    ViewBag.Title = "聯絡我們";
 }
-@*<2>@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>*@
+
+
 
 <div class="contact">
     <div class="container-fluid ">
+        <div class="container-fluid">
+            <div class="col d-flex justify-content-center aling-items-center title">
+                <h2>@ViewBag.Title</h2>
+            </div>
+        </div>
         <div class="col d-flex justify-content-center aling-items-center ">
             <div class="col-lg-3  cont">
                 <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-home"></i></span>
                     <div class="media-body">
-                        <h3>Buttonwood, California.</h3>
-                        <p>Rosemead, CA 91770</p>
+                        <p>地   址 </p>
+                        <h3>@Model.address</h3>
+
                     </div>
                 </div>
                 <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                     <div class="media-body">
-                        <h3>+1 253 565 2365</h3>
-                        <p>Mon to Fri 9am to 6pm</p>
+                        <p>電   話 </p>
+                        <h3>@Model.tel</h3>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-time"></i></span>
+                    <div class="media-body">
+                        <p>營業時間 </p>
+                        <h3>@Model.opentime to @Model.closetime</h3>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-hand-stop"></i></span>
+                    <div class="media-body">
+                        <p>公休日 </p>
+                        <h3>@Model.public_holiday</h3>
+
                     </div>
                 </div>
                 <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-email"></i></span>
                     <div class="media-body">
-                        <h3>support@colorlib.com</h3>
-                        <p>Send us your query anytime!</p>
+                        <p>有任何問題, 請隨時與我們聯絡!</p>
                     </div>
                 </div>
             </div>
         </div>
-    
-</div>
     </div>
     <div class="container-fluid">
         <div class="col d-flex justify-content-center aling-items-center" onclick="golink()">
             <div class="btn btn-lg border-light  cfBtn">
-                <h2> Contect Us</h2>
+                <h2> 請點我!</h2>
             </div>
         </div>
+    </div>
 </div>
-
-
-
