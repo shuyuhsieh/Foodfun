@@ -28,7 +28,7 @@
     }
 </style>
 <section class="">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12 border text-center align-items-center">
                 <h2 class="my-2">@ViewBag.Title</h2>
@@ -53,10 +53,10 @@
                                 @Html.DisplayFor(modelItem => item.orders.total)
                             </td>
                             <td>
-                                <input type="button" value=@(item.orders.ispaided.Value ? "已付款" : " 結帳去 ") class="btn btn-danger ispaided" onclick="location.href = '/Staff/StaffProd_Check/OnlineCheckout/?id=@item.orders.order_no'">
-                              
+                                <input type="button" value=@(item.orders.ispaided.Value ? "已結" : " 結帳 ") class="btn btn-danger ispaided" onclick="location.href = '/Staff/StaffProd_Check/OnlineCheckout/?id=@item.orders.order_no'">
+
                             </td>
-                            <td>
+                            <td class="orderstatus-name">
                                 @Html.DisplayFor(modelItem => item.orderstatus_name)
                             </td>
                             <td>
@@ -106,28 +106,36 @@
 <script>
     $('.this-order').css("cursor", "pointer");
 
-    $.each($('.ispaided'), function (index) {
+    $.each($('.ispaided'), function () {
 
-        if ($(this).val() == "已付款") {
-            $(this).attr('disabled', 'disabled');
-        }
+        if ($(this).val() == "已付款")$(this).attr('disabled', 'disabled');
+    })
+    $.each($('.change-status'), function () {
+       
+        if ($(this).attr("name") == "ALD") $(this).attr('disabled', 'disabled');
+
     })
 
     $('.change-status').on('click', function () {
 
         var order = $(this).parents("tr");
-        var status = $(this).attr("name");
-        console.log(order)
+
         $.ajax({
             type: 'post',
             url: '@Url.Action("ChangeStatus", "StaffOrder")',
             data: { id: order.attr("id") },
             success: function (result) {
                 console.log(result);
-                if (result == "0") {
-                    alert("aa");
-                    console.log(order.attr("name"));
-                    
+                if (result == "0") order.remove();
+                else
+                {
+                    order.children(".orderstatus-name").text(result.orderstatus_name);
+                    order.find(".change-status").val(result.change_status);
+                    if (result.orders.orderstatus_no == "ALD") {
+                        order.find(".change-status").attr('disabled', 'disabled');
+                    }
+
+
                 }
 
 

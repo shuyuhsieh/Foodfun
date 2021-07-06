@@ -60,7 +60,7 @@ public static class StaffOrder
                     string meal_no = orders[i].mealservice_no;
                     string order_no = orders[i].order_no;
                     string paid_no = orders[i].paid_no;
-                    string change_status = orders[i].orderstatus_no == "TBP" ? "準備完成" :(orders[i].orderstatus_no == "ALC")? "出餐完成":"出餐完成A";
+                    string change_status = orders[i].orderstatus_no == "TBP" ? "可出餐" :"出餐";
 
 
                     ordersViewModels.Add(new StaffOrderViewModel()

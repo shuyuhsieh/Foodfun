@@ -44,6 +44,7 @@ namespace foodfun.Areas.Staff.Controllers
                 StaffOrderViewModel thisData = new StaffOrderViewModel();
                 thisData.orders = data;
                 thisData.change_status = "出餐完成";
+                thisData.orderstatus_name = db.OrderStatus.Where(m => m.orderstatus_no == data.orderstatus_no).FirstOrDefault().orderstatus_name;
 
                 return Json(thisData, JsonRequestBehavior.AllowGet);
 
