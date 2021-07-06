@@ -21,7 +21,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.parentid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.parentid, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.category_name, (IEnumerable<SelectListItem>)ViewBag.ParentIdDropdownList, new { @class = "form-control chosen-select" })
+                @*  @Html.EditorFor(model => model.parentid, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.parentid, "", new { @class = "text-danger" })
             </div>
         </div>

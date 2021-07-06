@@ -35,7 +35,7 @@ public static class Backend
 
     }
 
-    //轉換中文
+    //使用者商品類別中文轉換
     public static string GetCodeName(string typeNo)
     {
 
@@ -66,7 +66,8 @@ public static class Backend
 
 
     }
-    public static string GetCodeName1(string typeNo)
+    //使用者角色代號中文轉換
+    public static string GetCodeNameRole(string typeNo)
     {
 
         using (GoPASTAEntities db = new GoPASTAEntities())
@@ -87,29 +88,68 @@ public static class Backend
     }
 
 
-    //下拉選單
+
+    //商品類別下拉選單
     public static List<SelectListItem> CtgryDropdownList()
     {
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
+            
             List<SelectListItem> cty_no = new List<SelectListItem>();
-            var datas = db.Categorys.OrderBy(m => m.category_no).ToList();
+           
+            var datas = db.Categorys.Where(m => m.parentid != 0).OrderBy(m => m.category_no).ToList(); 
             if (datas != null)
+
             {
                 foreach (var data in datas)
                 {
                     SelectListItem item = new SelectListItem();
-                    item.Value = data.category_no;
-                    item.Text = data.category_name;
 
+                    item.Value = data.category_no ;
+                    item.Text = data.category_name;
+                   
                     cty_no.Add(item);
                 }
                 cty_no.First().Selected = true;
+              
             }
-            return cty_no;
+
+            return cty_no ;
         }
 
     }
+
+
+    //商品類別parentid下拉選單
+    public static List<SelectListItem> ParentIdDropdownList()
+    {
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+
+            List<SelectListItem> parntid = new List<SelectListItem>();
+
+            var datas = db.Categorys.OrderBy(m => m.category_name).ToList();
+            if (datas != null)
+
+            {
+                foreach (var data in datas)
+                {
+                    SelectListItem item = new SelectListItem();                   
+
+                   
+                    item.Text = data.category_name;
+
+                    parntid.Add(item);
+                }
+                parntid.First().Selected = true;
+
+            }
+
+            return parntid;
+        }
+
+    }
+
 
 
 

@@ -28,8 +28,8 @@
                                     @* <th> @Html.DisplayNameFor(model => model.phone)</th>*@
                                     @*<th> @Html.DisplayNameFor(model => model.address)</th>*@
                                     @* <th> @Html.DisplayNameFor(model => model.email)</th>*@
-                                    <th> 使用者角色</th>
                                     <th> @Html.DisplayNameFor(model => model.role_no)</th>
+                                
                                     @* <th> @Html.DisplayNameFor(model => model.varify_code)</th>*@
                                     <th> @Html.ActionLink("新增記錄", "Create", "MemberBack", null, new { @class = "btn btn-primary" })</th>
 
@@ -68,12 +68,10 @@
                                                 @Html.DisplayFor(modelItem => item.email)
                                             </td>*@
                                         <td>
-                                            @Backend.GetCodeName1(item.role_no)
+                                            @Backend.GetCodeNameRole(item.role_no)
                                         </td>
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.role_no)
-                                        </td>
+                                       
                                         @*<td>
                                                 @Html.DisplayFor(modelItem => item.varify_code)
                                             </td>*@
