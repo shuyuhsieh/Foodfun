@@ -54,13 +54,13 @@
                             </td>
                             <td>
                                 <input type="button" value=@(item.orders.ispaided.Value ? "已付款" : " 結帳去 ") class="btn btn-danger ispaided" onclick="location.href = '/Staff/StaffProd_Check/OnlineCheckout/?id=@item.orders.order_no'">
-                                @*@(item.orders.ispaided.Value ? "已付款" : " 結帳"&ensp)*@
+                              
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.orderstatus_name)
                             </td>
                             <td>
-                                <input type="button" value=@item.change_status class="btn btn-warning ">
+                                <input type="button" value=@item.change_status class="btn btn-warning change-status" name="@item.orders.orderstatus_no">
                             </td>
 
 
@@ -106,28 +106,45 @@
 <script>
     $('.this-order').css("cursor", "pointer");
 
-
     $.each($('.ispaided'), function (index) {
 
         if ($(this).val() == "已付款") {
             $(this).attr('disabled', 'disabled');
         }
     })
-    @*$('.ispaided').on('click', function () {
-        var id = $(this).parents('tr').attr('id');
-        console.log(id);
-        window.location = '@Url.Action("OnlineCheckout", "StaffProd_Check",)';
 
-    });*@
+    $('.change-status').on('click', function () {
+
+        var order = $(this).parents("tr");
+        var status = $(this).attr("name");
+        console.log(order)
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("ChangeStatus", "StaffOrder")',
+            data: { id: order.attr("id") },
+            success: function (result) {
+                console.log(result);
+                if (result == "0") {
+                    alert("aa");
+                    console.log(order.attr("name"));
+                    
+                }
+
+
+            }, error: function () {
+                alert('失敗')
+            }
+        })
+
+    })
 
 
      function ShowThisOrder(productId) {
                 $.ajax({
                     type: 'POST',
-                    url: '@Url.Action("OrderBox", "StaffProd_Check")',
+                    url: '@Url.Action("ChangeStatus", "StaffProd_Check")',
                     data: { id: productId,qty:qty,prop_select:select},
                     success: function (data) {
-                        /*alert('成功')*/
                         $("#orderDetail").html(data);
                     },
                     error: function () {

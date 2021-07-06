@@ -216,11 +216,8 @@
                     str_product_spec += label+' : '+ $(this).val() + " ";
                     console.log(str_product_spec)
                 })
-
-
                 AddToCart(id, qty, str_product_spec);
                 $(".modal").modal('hide');
-
             });
 
             function AddToCart(productId, qty, select) {
