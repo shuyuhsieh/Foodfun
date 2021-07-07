@@ -158,6 +158,7 @@
     <Compile Include="Areas\Admin\Controllers\PaymentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductBackController.cs" />
     <Compile Include="Areas\Admin\Controllers\PropertysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleAuthorizedController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffProd_CheckController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffOrderController.cs" />
     <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
@@ -477,6 +478,8 @@
     <Content Include="Areas\Admin\Views\MemberBack\Create.cshtml" />
     <Content Include="Areas\Admin\Views\MemberBack\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductBack\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleAuthorized\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleAuthorized\Edit.cshtml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
