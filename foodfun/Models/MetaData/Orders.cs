@@ -43,7 +43,7 @@ namespace foodfun.Models
 
 
              [DisplayFormat(DataFormatString =("{0:yyyy/MM/dd HH:mm}"))]
-            [Display(Name = "預約取餐時間")]
+            [Display(Name = "取餐時間")]
             public Nullable<System.DateTime> SchedulOrderTime { get; set; }
 
             [Display(Name = "桌號")]

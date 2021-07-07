@@ -35,6 +35,7 @@
             </div>
             <div class="col-md-8 text-center my-4 ">
                 <table class="table  ">
+
                     @foreach (var item in Model)
                     {
                         <tr class="this-order" id="@item.orders.order_no">
@@ -74,29 +75,8 @@
             </div>
 
             <div class="col-md-4">
-                <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">Category</h4>
-                        <ul class="list cat-list">
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Resaurant food</p>
-                                    <p>(37)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Travel news</p>
-                                    <p>(10)</p>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </aside>
-                </div>
+                @Html.Partial("~/Areas/Staff/Views/StaffOrder/_PartialDetailOrder.cshtml")
             </div>
-
-
 
 
         </div>
@@ -108,7 +88,7 @@
 
     $.each($('.ispaided'), function () {
 
-        if ($(this).val() == "已付款")$(this).attr('disabled', 'disabled');
+        if ($(this).val() == "已結")$(this).attr('disabled', 'disabled');
     })
     $.each($('.change-status'), function () {
        

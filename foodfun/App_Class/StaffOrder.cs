@@ -26,7 +26,7 @@ public static class StaffOrder
 
 
     /// <summary>
-    /// 取得今日未完成訂單
+    /// 取得訂單資訊
     /// </summary>
     public static List<StaffOrderViewModel> GetOrderList(DateTime date,bool isclosed)
     {
@@ -74,7 +74,7 @@ public static class StaffOrder
                     }) ;
                     if (ordersViewModels[i].orders.ispaided==true)
                     {
-                        ordersViewModels[i].paid_name = db.Payments.Where(m => m.paid_no == paid_no).FirstOrDefault().paid_no;
+                        ordersViewModels[i].paid_name = db.Payments.Where(m => m.paid_no == paid_no).FirstOrDefault().paid_name;
                     }
                 }
             }

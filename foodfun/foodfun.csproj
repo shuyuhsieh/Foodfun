@@ -477,6 +477,8 @@
     <Content Include="Areas\Admin\Views\MemberBack\Create.cshtml" />
     <Content Include="Areas\Admin\Views\MemberBack\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductBack\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\StaffOrder\_PartialDetailOrder.cshtml" />
+    <Content Include="Areas\Staff\Views\StaffOrder\TodayHistory.cshtml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -894,6 +896,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\MemberOrder\Index.cshtml" />
     <Content Include="Views\MemberOrder\_PartialOrder.cshtml" />
+    <Content Include="Views\Shared\_PartialDatatableCss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
