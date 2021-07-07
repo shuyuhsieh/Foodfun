@@ -52,6 +52,21 @@ namespace foodfun.Areas.Staff.Controllers
             }
         }
 
+        public JsonResult GetOrderDedail(string id) {
+
+            using (GoPASTAEntities db = new GoPASTAEntities()) 
+            {
+                var data = db.OrdersDetails.Where(m => m.order_no == id).ToList();
+
+                for (int i = 0; i < data.Count(); i++)
+                {
+                    data[i].product_no = Shop.GetProductName(data[i].product_no);
+                }
+              
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         
         [LoginAuthorize(RoleList = "Admin/Staff")]
         public ActionResult TodayHistory()
