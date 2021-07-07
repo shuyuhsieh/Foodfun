@@ -26,7 +26,7 @@ public static class StaffOrder
 
 
     /// <summary>
-    /// 取得今日未完成訂單
+    /// 取得訂單資訊
     /// </summary>
     public static List<StaffOrderViewModel> GetOrderList(DateTime date,bool isclosed)
     {
@@ -60,7 +60,7 @@ public static class StaffOrder
                     string meal_no = orders[i].mealservice_no;
                     string order_no = orders[i].order_no;
                     string paid_no = orders[i].paid_no;
-                    string change_status = orders[i].orderstatus_no == "TBP" ? "準備完成" :(orders[i].orderstatus_no == "ALC")? "出餐完成":"";
+                    string change_status = orders[i].orderstatus_no == "TBP" ? "可出餐" :"出餐";
 
 
                     ordersViewModels.Add(new StaffOrderViewModel()
@@ -74,7 +74,7 @@ public static class StaffOrder
                     }) ;
                     if (ordersViewModels[i].orders.ispaided==true)
                     {
-                        ordersViewModels[i].paid_name = db.Payments.Where(m => m.paid_no == paid_no).FirstOrDefault().paid_no;
+                        ordersViewModels[i].paid_name = db.Payments.Where(m => m.paid_no == paid_no).FirstOrDefault().paid_name;
                     }
                 }
             }

@@ -120,10 +120,6 @@ namespace foodfun.Controllers
 
             Cart.AddNewOrder(model, true);
             string a = Cart.GetOrderNO();
-
-
-
-      
             Cart.AddNewOrderDetail();
 
 
