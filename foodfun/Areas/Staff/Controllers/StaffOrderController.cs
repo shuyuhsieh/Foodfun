@@ -18,6 +18,17 @@ namespace foodfun.Areas.Staff.Controllers
             return View(StaffOrder.GetOrderList(DateTime.Today, false));
         }
 
+
+        [LoginAuthorize(RoleList = "Admin/Staff")]
+        public ActionResult ReserveOrder()
+        {
+
+
+            return View(StaffOrder.GetOrderList(DateTime.Today, true));
+
+        }
+
+
         [LoginAuthorize(RoleList = "Admin/Staff")]
         [HttpPost]
         public JsonResult ChangeStatus(string id)
@@ -76,6 +87,7 @@ namespace foodfun.Areas.Staff.Controllers
             return View(StaffOrder.GetOrderList(DateTime.Today, true));
 
         }
+
 
     }
 }

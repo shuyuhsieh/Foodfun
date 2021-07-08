@@ -4,37 +4,7 @@
     ViewBag.Title = "線上訂單";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
 
-    .online_order .order_detail_sidebar .widget_title {
-        font-size: 20px;
-    }
-
-
-
-    .online_order .order_detail_sidebar .single_sidebar_widget {
-        background: #f1f1f1;
-        padding: 30px;
-        margin: 30px 0;
-    }
-
-        .online_order .order_detail_sidebar .single_sidebar_widget .list li {
-            border-bottom: 1px solid #f0e9ff;
-            font-size: 14px;
-            line-height: 42px;
-            color: darkslategray;
-            display: block;
-        }
-
-        .online_order .order_detail_sidebar .single_sidebar_widget .cat-list li:last-child {
-            border-bottom: 0
-        }
-
-
-        .online_order .order_detail_sidebar .single_sidebar_widget .list li span {
-            float: right
-        }
-</style>
 <section class="online_order">
     <div class="container-fluid">
         <div class="row">
@@ -44,39 +14,73 @@
             <div class="col-md-8 text-center my-4 ">
                 <table class="table  ">
 
-                    @foreach (var item in Model)
-                    {
-                        <tr class="this-order" id="@item.orders.order_no">
-
-                            <td>
-
-                                <h5>@Html.DisplayFor(modelItem => item.mealservice_name)</h5>
-                                @Html.DisplayFor(modelItem => item.orders.order_no)
-                            </td>
-                            <td>
-
-                                @Html.ValueFor(modelItem => item.orders.SchedulOrderTime, "{0:HH:mm}")
-                            </td>
-                            <td class="orders-total">
-                                @Html.DisplayFor(modelItem => item.orders.total)
-                            </td>
-                            <td>
-                                <input type="button" value=@(item.orders.ispaided.Value ? "已結" : " 結帳 ") class="btn btn-danger ispaided" onclick="location.href = '/Staff/StaffProd_Check/OnlineCheckout/?id=@item.orders.order_no'">
-
-                            </td>
-                            <td class="orderstatus-name">
-                                @Html.DisplayFor(modelItem => item.orderstatus_name)
-                            </td>
-                            <td>
-                                <input type="button" value=@item.change_status class="btn btn-warning change-status" name="@item.orders.orderstatus_no">
-                            </td>
 
 
 
-                        </tr>
+
+
+                    <tbody>
+                        @if (Model.Count() != 0)
+                        {
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(m => m.mealservice_name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(m => m.orders.SchedulOrderTime)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(m => m.orders.total)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(m => m.orderstatus_name)
+                                </th>
+                                <th colspan="2">
+
+                                </th>
+                        </thead>
+
+                        foreach (var item in Model)
+                        {
+                            <tr class="this-order" id="@item.orders.order_no">
+
+                                <td>
+
+                                    <h5>@Html.DisplayFor(modelItem => item.mealservice_name)</h5>
+                                    @Html.DisplayFor(modelItem => item.orders.order_no)
+                                </td>
+                                <td>
+
+                                    @Html.ValueFor(modelItem => item.orders.SchedulOrderTime, "{0:HH:mm}")
+                                </td>
+                                <td class="orders-total">
+                                    @Html.DisplayFor(modelItem => item.orders.total)
+                                </td>
+
+                                <td class="orderstatus-name">
+                                    @Html.DisplayFor(modelItem => item.orderstatus_name)
+                                </td>
+                                <td>
+                                    <input type="button" value=@(item.orders.ispaided.Value ? "已結" : " 結帳 ") class="btn btn-danger ispaided" onclick="location.href = '/Staff/StaffProd_Check/OnlineCheckout/?id=@item.orders.order_no'">
+
+                                </td>
+                                <td>
+                                    <input type="button" value=@item.change_status class="btn btn-warning change-status" name="@item.orders.orderstatus_no">
+                                </td>
+
+
+
+                            </tr>
+                        }
+
+
+
                     }
 
-                </table>
+                        </tbody>
+
+                    </table>
 
 
             </div>
@@ -89,7 +93,10 @@
                             <h4 class="widget_title text-center">請選擇訂單</h4>
 
                             <ul class="list cat-list border-bottom border-secondary  my-3"></ul>
-                            <ul class="list list_2"></ul>
+                            <ul class="list list_2">
+                                <li>  <span></span> </li>
+
+                            </ul>
                         </aside>
                     </div>
 
@@ -116,11 +123,11 @@
 
     $('.this-order').on("click", function () {
         $('.this-order').css("background-color", "");
-        $(this).css("background-color", "LightGray");
+        $(this).css("background-color", "#f1f1f1");
         $('.single_sidebar_widget h4').text('餐點內容');
-        $('.single_sidebar_widget .list_2 li span').text($(this).children('.orders-total').text());
+        $('.single_sidebar_widget .list_2 ').html(' <li>總計 <span>' + $(this).children('.orders-total').text()+'</span> </li>');
 
-
+        //$('.single_sidebar_widget .list_2 li span').text($(this).children('.orders-total').text());
 
         var this_order = $(this);
         $.ajax({

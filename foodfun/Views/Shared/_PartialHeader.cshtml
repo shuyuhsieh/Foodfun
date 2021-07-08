@@ -29,8 +29,8 @@
                                 }
                                 else
                                 {
-                                    <li><a href="@Url.Action("OnlineOrder","StaffOrder")">線上訂單</a></li>
-                                    @*<li><a href="#">外帶/外送</a></li>*@
+                                    <li><a href="@Url.Action("OnlineOrder","StaffOrder",new { area = "Staff" })">線上訂單</a></li>
+                                    <li><a href="@Url.Action("reserveOrder","StaffOrder",new { area = "Staff" })">預約訂單</a></li>
 
                                 }
 
