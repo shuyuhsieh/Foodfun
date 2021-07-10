@@ -54,8 +54,15 @@ namespace foodfun.Areas.Staff.Controllers
         //public JsonResult SelectCheckout(FormCollection collection)
         public JsonResult AddOrderInfi(FormCollection collection)
         {
-            int result = 0;
-            if (collection["mealService"] == null) { return Json(result, JsonRequestBehavior.AllowGet); }
+            int result = -1;
+            if (CartTemp.GetCurrentCart().cartItems.Count() == 0) return Json(result, JsonRequestBehavior.AllowGet);
+
+
+            if (collection["mealService"] == null)
+            {
+                result = 0;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
 
             if (collection["mealService"] == "A")
             {
@@ -81,8 +88,8 @@ namespace foodfun.Areas.Staff.Controllers
                     result = 3;
                     return Json(result, JsonRequestBehavior.AllowGet);
                 }
-
             }
+
 
             ConfirmationViewModel orderInfoView = new ConfirmationViewModel()
             {
@@ -178,22 +185,20 @@ namespace foodfun.Areas.Staff.Controllers
         {
             bool result = false;
             ConfirmationViewModel model = (ConfirmationViewModel)TempData["CheckoutInfo"];
-            if (model.Cart.Count() != 0)
+
+            try
             {
-                try
-                {
-                    Cart.AddNewOrder(model, false, "TBP");
-                    string OrderNo = Cart.GetOrderNO();
-                    Cart.StaffNewOrderDetail();
-                    result = true;
-                    return Json(OrderNo, JsonRequestBehavior.AllowGet);
-                }
-                catch (Exception)
-                {
-                    return Json(result, JsonRequestBehavior.AllowGet);
-                }
+                Cart.AddNewOrder(model, false, "TBP");
+                string OrderNo = Cart.GetOrderNO();
+                Cart.StaffNewOrderDetail();
+                result = true;
+                return Json(OrderNo, JsonRequestBehavior.AllowGet);
             }
-            return Json(result, JsonRequestBehavior.AllowGet);
+            catch ( Exception ex)
+            {
+                return Json(ex, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
 
@@ -208,7 +213,7 @@ namespace foodfun.Areas.Staff.Controllers
         public JsonResult Checkout(ConfirmationViewModel model)
         {
             bool result = false;
-          
+
             if (model.Order.paid_no == null)
             {
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -228,7 +233,7 @@ namespace foodfun.Areas.Staff.Controllers
                 {
                     order.ispaided = true;
                     order.paid_no = model.Order.paid_no;
-                    if (order.orderstatus_no=="ALD")
+                    if (order.orderstatus_no == "ALD")
                     {
                         order.isclosed = true;
                     }
@@ -245,7 +250,7 @@ namespace foodfun.Areas.Staff.Controllers
 
 
             }
-           
+
         }
 
 

@@ -275,16 +275,25 @@
             url: '@Url.Action("AddOrderInfi", "StaffProd_Check")',
             data: data,
             success: function (result) {
-                var content = result == 0 ? '請選擇寫用餐方式!' : (result == 1 ? '請填寫桌號!' : (result == 2 ? '請填寫取餐時間!' : '請填寫外送資訊'));
 
-                if (result!=4) {
+
+                var content = result == 0 ? '請選擇寫用餐方式!' : (result == 1 ? '請填寫桌號!' : (result == 2 ? '請填寫取餐時間!' : '請填寫外送資訊'));
+                if (result == -1)
+                {
+                    $.alert({
+                        title: '錯誤!',
+                        content: "購物車為空",
+                        type: 'red',
+
+                    });
+                } else if (result != 4)
+                {
                     $.alert({
                         title: '錯誤!',
                         content: content,
                         type: 'red',
-
                     });
-                } else {
+                }  else {
                     $.confirm({
                         title: '下一步!',
                         content: '是否結帳!',
@@ -314,7 +323,7 @@
                                         $.alert({
                                             icon: 'fa fa-exclamation',
                                             title: '錯誤!',
-                                            content: '購物車是空的!',
+                                            content: result,
                                             type: 'red',
                                             theme: 'modern'
                                         });
