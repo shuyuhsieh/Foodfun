@@ -22,10 +22,8 @@ namespace foodfun.Areas.Staff.Controllers
         [LoginAuthorize(RoleList = "Admin/Staff")]
         public ActionResult ReserveOrder()
         {
-
-
-            return View(StaffOrder.GetOrderList(DateTime.Today, true));
-
+            DateTime future = DateTime.Today.AddDays(1);
+            return View(StaffOrder.GetOrderList(future, false));
         }
 
 

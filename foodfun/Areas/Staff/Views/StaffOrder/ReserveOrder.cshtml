@@ -1,0 +1,176 @@
+﻿@model IEnumerable<foodfun.Models.StaffOrderViewModel>
+
+@{
+    ViewBag.Title = "預約訂單";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="online_order">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 border text-center align-items-center">
+                <h2 class="my-2">@ViewBag.Title</h2>
+
+
+            </div>
+            <div class="col-md-8 text-center my-4 ">
+                <table class="table  ">
+                    <tbody>
+                        @if (Model.Count() != 0)
+                        {
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(m => m.mealservice_name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(m => m.orders.SchedulOrderTime)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(m => m.orders.total)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(m => m.orderstatus_name)
+                                </th>
+                                <th colspan="2">
+
+                                </th>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr class="this-order" id="@item.orders.order_no">
+
+                                    <td>
+
+                                        <h5>@Html.DisplayFor(modelItem => item.mealservice_name)</h5>
+                                        @Html.DisplayFor(modelItem => item.orders.order_no)
+                                    </td>
+                                    <td>
+
+                                        @Html.ValueFor(modelItem => item.orders.SchedulOrderTime, "{0:HH:mm}")
+                                    </td>
+                                    <td class="orders-total">
+                                        @Html.DisplayFor(modelItem => item.orders.total)
+                                    </td>
+
+                                    <td class="orderstatus-name">
+                                        @Html.DisplayFor(modelItem => item.orderstatus_name)
+                                    </td>
+                                    <td>
+                                        <input type="button" value=@(item.orders.ispaided.Value ? "已結" : " 結帳 ") class="btn btn-danger ispaided" onclick="location.href = '/Staff/StaffProd_Check/OnlineCheckout/?id=@item.orders.order_no'">
+
+                                    </td>
+                                    <td>
+                                        <input type="button" value=@item.change_status class="btn btn-warning change-status" name="@item.orders.orderstatus_no">
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+
+                    </table>
+
+
+                </div>
+
+                <div class="col-md-4">
+                    @if (Model.Count() != 0)
+                    {
+                        <div class="order_detail_sidebar">
+                            <aside class="single_sidebar_widget ">
+                                <h4 class="widget_title text-center">請選擇訂單</h4>
+
+                                <ul class="list cat-list border-bottom border-secondary  my-3"></ul>
+                                <ul class="list list_2">
+                                    <li>  <span></span> </li>
+
+                                </ul>
+                            </aside>
+                        </div>
+
+                    }
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+    $('.this-order').css("cursor", "pointer");
+
+    $.each($('.ispaided'), function () {
+
+        if ($(this).val() == "已結")$(this).attr('disabled', 'disabled');
+    })
+    $.each($('.change-status'), function () {
+
+        if ($(this).attr("name") == "ALD") $(this).attr('disabled', 'disabled');
+    })
+
+    $('.this-order').on("click", function () {
+        $('.this-order').css("background-color", "");
+        $(this).css("background-color", "#f1f1f1");
+        $('.single_sidebar_widget h4').text('餐點內容');
+        $('.single_sidebar_widget .list_2 ').html(' <li>總計 <span>' + $(this).children('.orders-total').text()+'</span> </li>');
+
+        //$('.single_sidebar_widget .list_2 li span').text($(this).children('.orders-total').text());
+
+        var this_order = $(this);
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("GetOrderDedail", "StaffOrder")',
+            data: { id: this_order.attr("id") },
+            success: function (result) {
+                console.log(result);
+                $('.single_sidebar_widget .cat-list').empty();
+                $('.single_sidebar_widget .cat-list').append('<li>商品<span>小計</span></li>')
+                $.each(result, function (index,item) {
+                    $('.single_sidebar_widget .cat-list').append(
+                        '<li>' + item.qty + ' x ' + item.product_no + '<span>' + item.each_item_amount + '</span></li>' +
+                        '<li>' + item.Property_select +'</li>'
+                    )
+                })
+            }
+
+
+        })
+
+    })
+    $('.change-status').on('click', function () {
+
+        var order = $(this).parents("tr");
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("ChangeStatus", "StaffOrder")',
+            data: { id: order.attr("id") },
+            success: function (result) {
+                console.log(result);
+                if (result == "0")
+                {
+                    order.remove();
+                    $('.single_sidebar_widget h4').text('請選擇訂單');
+                    $('.single_sidebar_widget ul').empty();
+                }
+                else
+                {
+                    order.children(".orderstatus-name").text(result.orderstatus_name);
+                    order.find(".change-status").val(result.change_status);
+                    if (result.orders.orderstatus_no == "ALD") {
+                        order.find(".change-status").attr('disabled', 'disabled');
+                    }
+                }
+            }, error: function () {
+                alert('失敗')
+            }
+        })
+
+    })
+
+
+    </script>
+
