@@ -41,5 +41,6 @@ namespace foodfun.Models
         public virtual DbSet<Propertys> Propertys { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<About> About { get; set; }
     }
 }

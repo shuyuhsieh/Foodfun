@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="GoPASTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'GoPASTA.dbo.About' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="companyid" />
+          </Key>
+          <Property Name="companyid" Type="int" Nullable="false" />
+          <Property Name="sortid" Type="int" />
+          <Property Name="corevalue_title" Type="nchar" MaxLength="50" />
+          <Property Name="corevalue_descpt" Type="nchar" MaxLength="250" />
+          <Property Name="about_path" Type="nchar" MaxLength="50" />
+          <Property Name="corevalue_path" Type="nchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Carts">
           <Key>
             <PropertyRef Name="rowid" />
@@ -219,6 +232,16 @@
           <EntitySet Name="Propertys" EntityType="Self.Propertys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="About" EntityType="Self.About" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [About].[companyid] AS [companyid], 
+    [About].[sortid] AS [sortid], 
+    [About].[corevalue_title] AS [corevalue_title], 
+    [About].[corevalue_descpt] AS [corevalue_descpt], 
+    [About].[about_path] AS [about_path], 
+    [About].[corevalue_path] AS [corevalue_path]
+    FROM [dbo].[About] AS [About]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -422,6 +445,17 @@
           <Property Name="isvarify" Type="Boolean" />
           <Property Name="isvalidate" Type="Boolean" />
         </EntityType>
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="companyid" />
+          </Key>
+          <Property Name="companyid" Type="Int32" Nullable="false" />
+          <Property Name="sortid" Type="Int32" />
+          <Property Name="corevalue_title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="corevalue_descpt" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="about_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="corevalue_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
         <EntityContainer Name="GoPASTAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carts" EntityType="Self.Carts" />
           <EntitySet Name="Categorys" EntityType="Self.Categorys" />
@@ -439,6 +473,7 @@
           <EntitySet Name="Propertys" EntityType="Self.Propertys" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="About" EntityType="Self.About" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -656,6 +691,18 @@
                 <ScalarProperty Name="varify_code" ColumnName="varify_code" />
                 <ScalarProperty Name="isvarify" ColumnName="isvarify" />
                 <ScalarProperty Name="isvalidate" ColumnName="isvalidate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="About">
+            <EntityTypeMapping TypeName="GoPASTAModel.About">
+              <MappingFragment StoreEntitySet="About">
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="sortid" ColumnName="sortid" />
+                <ScalarProperty Name="corevalue_title" ColumnName="corevalue_title" />
+                <ScalarProperty Name="corevalue_descpt" ColumnName="corevalue_descpt" />
+                <ScalarProperty Name="about_path" ColumnName="about_path" />
+                <ScalarProperty Name="corevalue_path" ColumnName="corevalue_path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
