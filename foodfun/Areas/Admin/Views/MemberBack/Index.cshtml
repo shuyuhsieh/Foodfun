@@ -29,8 +29,8 @@
                                     @*<th> @Html.DisplayNameFor(model => model.address)</th>*@
                                     @* <th> @Html.DisplayNameFor(model => model.email)</th>*@
                                     <th> @Html.DisplayNameFor(model => model.role_no)</th>
-                                
-                                    @* <th> @Html.DisplayNameFor(model => model.varify_code)</th>*@
+
+                                   @* <th> @Html.DisplayNameFor(model => model.isvalidate)</th>*@
                                     <th> @Html.ActionLink("新增記錄", "Create", "MemberBack", null, new { @class = "btn btn-primary" })</th>
 
                                 </tr>
@@ -71,10 +71,10 @@
                                             @Backend.GetCodeNameRole(item.role_no)
                                         </td>
 
-                                       
+
                                         @*<td>
-                                                @Html.DisplayFor(modelItem => item.varify_code)
-                                            </td>*@
+                                            @Html.DisplayFor(modelItem => item.isvalidate)
+                                        </td>*@
 
                                         <td>
                                             @Html.ActionLink("修改", "Edit", "MemberBack", new { id = item.mno }, new { @class = "btn btn-success" })

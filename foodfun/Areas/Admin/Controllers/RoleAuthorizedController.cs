@@ -28,7 +28,7 @@ namespace foodfun.Areas.Admin.Controllers
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
                 
-                var models = db.Users.Where(m => m.role_no == id).FirstOrDefault();
+                var models = db.Users.Where(m => m.mno == id).FirstOrDefault();
                 return View(models);
             }
         }
@@ -42,15 +42,43 @@ namespace foodfun.Areas.Admin.Controllers
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
                
-                var data = db.Users.Where(m => m.role_no == model.role_no).FirstOrDefault();              
+                var data = db.Users.Where(m => m.mno == model.mno).FirstOrDefault();
+                data.mname = model.mname;
+                data.account_name = model.account_name;
+                //data.password = model.password;
+                //data.id = model.id;
+                //data.birthday = model.birthday;
+                //data.phone = model.phone;
+                //data.address = model.address;
+                //data.email = model.email;
                 data.role_no = model.role_no;
-              
+                //data.varify_code = model.varify_code;
+                //data.isvarify = model.isvarify;
+                data.isvalidate = model.isvalidate;
+
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
         }
+
+        //[HttpGet]
+
+        //public ActionResult Delete(string id)
+        //{
+        //    using (GoPASTAEntities db = new GoPASTAEntities())
+        //    {
+        //        var model = db.Users.Where(m => m.mno == id).FirstOrDefault();
+        //        if (model != null)
+        //        {
+        //            db.Users.Remove(model);
+        //            db.SaveChanges();
+        //        }
+        //        //return RedirectToAction("Index", "Product");    //Product為controller可略,會以目前controller為主
+        //        return RedirectToAction("Index");
+        //    }
+        //}
 
     }
 }

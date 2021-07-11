@@ -74,7 +74,7 @@ namespace foodfun.Areas.Admin.Controllers
             {
                 // var data = db.Users.Where(m => m.property_no == model.property_no).FirstOrDefault();
                 var data = db.Users.Where(m => m.mno == model.mno).FirstOrDefault();
-                // data.rowid = model.rowid;
+                
                 data.mname = model.mname;
                 data.account_name = model.account_name;
                 data.password = model.password;
