@@ -10,13 +10,15 @@
     categorys = Shop.GetCategarysIsSale();
 
 }
-
-
+<script src="~/Scripts/jquery.twzipcode.min.js"></script>
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.datetimepicker.js"></script>
 <style>
     .popular-items .order_box .order-list label {
         width: 100px;
     }
 </style>
+
 
 <section class="popular-items latest-padding">
     <div class="container-fluid">
@@ -163,21 +165,24 @@
 
                         </div>
 
+
                         <div class="mb-2" id="ordertime" style="display:none">
 
-                            @Html.EditorFor(model => model.Order.SchedulOrderTime, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", placeholder = "預約取餐時間" } })
+                            @Html.EditorFor(model => model.Order.SchedulOrderTime, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", placeholder = "預約取餐時間", id = "datetimepicker" } })
                             @Html.ValidationMessageFor(model => model.Order.SchedulOrderTime, "", new { @class = "text-danger" })
-
-
 
                         </div>
 
-                        <div id="addr" style="display:none">
 
-
+                        <div id="addr" style="display:none" class="mb-2">
+                            <div id="twzipcode" class="row form-group col-12">
+                                <div data-role="county">
+                                </div>
+                                <div data-role="district">
+                                </div>
+                            </div>
                             @Html.EditorFor(model => model.Order.receive_address, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入地址" } })
                             @Html.ValidationMessageFor(model => model.Order.receive_address, "", new { @class = "text-danger" })
-
                         </div>
 
                         @*<a class="btn_3" href="#">Proceed to Paypal</a>*@
@@ -220,21 +225,36 @@
                 $(".modal").modal('hide');
             });
 
-            function AddToCart(productId, qty, select) {
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("OrderBox", "StaffProd_Check")',
-                    data: { id: productId,qty:qty,prop_select:select},
-                    success: function (data) {
-                        /*alert('成功')*/
-                        $("#orderDetail").html(data);
-                    },
-                    error: function () {
-                        alert('失敗')
-                    }
+        $('#twzipcode').twzipcode({
+            zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
+            css: [" form-control ", " form-control "], // 自訂 "城市"、"地區" class 名稱
+        });
+
+        $('#datetimepicker').datetimepicker({
+            minDate: '0',//yesterday is minimum date(for today use 0 or -1970/01/01)
+
+            maxDate: '+1970/01/05',//tomorrow is maximum date calendar
+            minTime: '11:00',
+            maxTime: '21:00',
+            value: '2020/02/02',
+            lang: 'zh-TW',
+            step: 10
+        });
+
+        function AddToCart(productId, qty, select) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("OrderBox", "StaffProd_Check")',
+                data: { id: productId,qty:qty,prop_select:select},
+                success: function (data) {
+                    /*alert('成功')*/
+                    $("#orderDetail").html(data);
+                },
+                error: function () {
+                    alert('失敗')
+                }
                 })
             }
-
         })
 
     //選擇用餐方式並動態顯示欄位
