@@ -17,14 +17,7 @@
                                     <li><a href='@Url.Action("CategoryList", "Product")'>餐點訂購</a></li>
                                     <li><a href="@Url.Action("About","Home")">關於我們</a></li>
                                     <li><a href="@Url.Action("Contact","Home")">聯絡我們</a></li>
-                                    @*<li>
-                                            <a href="shop.html">新訂單</a>
-                                            <ul class="submenu">
-                                                <li><a href="#"> Product list</a></li>
-                                                <li><a href="#"> Product Details</a></li>
-                                            </ul>
-
-                                        </li>*@
+     
 
                                 }
                                 else
@@ -67,6 +60,9 @@
                             }
                             else
                             {
+                                <li id="tblInfo">
+
+                                </li>
                                 <li><a href="@Url.Action("Index","StaffProd_Check")"><span class="far fa-plus-square"></span></a> </li>
                                 <li><a href="@Url.Action("TodayHistory","StaffOrder")"><span class="far fa-folder"></span></a> </li>
                                 @*<li><a href="@Url.Action("Index", "Admin", new { area = "Admin" })"><span class="fas fa-cog"></span></a> </li>*@
@@ -94,3 +90,52 @@
     </div>
 </header>
 <!-- Header End -->
+
+<script src="~/Scripts/jquery.signalR-2.4.2.js"></script>
+<script src="~/signalr/hubs" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var cus = $.connection.cusHub;
+        cus.client.displayGoPASTA = function () {
+            getData();
+        };
+
+        $.connection.hub.start();
+        getData();
+    });
+
+    function convertToJavaScriptDate(value) {
+        var pattern = /Date\(([^)]+)\)/;
+        var results = pattern.exec(value);
+        var dt = new Date(parseFloat(results[1]));
+        return dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate() + " " + dt.getHours() + ":" + dt.getUTCMinutes(2) + ":" + dt.getSeconds();
+    }
+
+    function getData() {
+        var $tbl = $('#tblInfo');
+        $.ajax({
+            url: "/CheckOrder/Get",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                console.log(data.listCus.length)
+                $tbl.empty();
+                if (data.listCus.length != 0) {
+                    $tbl.append(
+                        '<a href="#"><div class="btn btn-danger"><i class="far fa-bell"></i> 新訂單</div></a>' +
+                        '<ul class="submenu"></ul>'
+                    )
+                    $.each(data.listCus, function (i, model) {
+                        $tbl.children("ul").append(
+
+                            '<li><a href="#">' + model.order_no + '</a></li>'
+
+                        )
+                    })
+                }
+            }
+        })
+    }</script>
+
+
