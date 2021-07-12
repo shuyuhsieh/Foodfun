@@ -44,12 +44,13 @@
 
                                     <td>
 
-                                        <h5>@Html.DisplayFor(modelItem => item.mealservice_name)</h5>
+                                        <h6>@Html.DisplayFor(modelItem => item.mealservice_name)</h6>
                                         @Html.DisplayFor(modelItem => item.orders.order_no)
                                     </td>
                                     <td>
 
-                                        @Html.ValueFor(modelItem => item.orders.SchedulOrderTime, "{0:HH:mm}")
+                                       <h6> @Html.ValueFor(modelItem => item.orders.SchedulOrderTime, "{0:HH:mm}")</h6>
+                                        <span>@Html.ValueFor(modelItem => item.orders.SchedulOrderTime, "{0:MM:dd}")</span>
                                     </td>
                                     <td class="orders-total">
                                         @Html.DisplayFor(modelItem => item.orders.total)
