@@ -27,7 +27,7 @@ namespace foodfun.Areas.Admin.Controllers
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                
+                ViewBag.RoleDropdownList = Backend.RoleDropdownList();
                 var models = db.Users.Where(m => m.mno == id).FirstOrDefault();
                 return View(models);
             }

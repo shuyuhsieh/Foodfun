@@ -13,6 +13,7 @@ namespace foodfun.Models
         {
 
             [Key]
+            [Display(Name = "會員編號")]
             public string mno { get; set; }
 
             /// <summary>

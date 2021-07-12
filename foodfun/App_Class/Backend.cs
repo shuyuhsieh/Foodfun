@@ -151,6 +151,39 @@ public static class Backend
     }
 
 
+    //會員類別role下拉選單
+    public static List<SelectListItem> RoleDropdownList()
+    {
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+
+            List<SelectListItem> rolename = new List<SelectListItem>();
+
+            var datas = db.Roles.OrderBy(m => m.remark).ToList();
+            if (datas != null)
+
+            {
+                foreach (var data in datas)
+                {
+                    SelectListItem item = new SelectListItem();
+
+                    item.Value = data.role_no;
+                    item.Text = data.remark;
+
+                    rolename.Add(item);
+                }
+
+                rolename.First().Selected = true;
+
+            }
+
+            return rolename;
+        }
+
+    }
+
+
+
 
 
 }

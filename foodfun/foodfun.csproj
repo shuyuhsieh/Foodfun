@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="Models\MetaData\Categorys.cs" />
     <Compile Include="Models\MetaData\Orders.cs" />
+    <Compile Include="Models\MetaData\Payments.cs" />
     <Compile Include="Models\MetaData\Products.cs" />
     <Compile Include="Models\MetaData\ProgramList.cs" />
     <Compile Include="Models\MetaData\Propertys.cs" />
