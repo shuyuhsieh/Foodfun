@@ -25,5 +25,6 @@ namespace foodfun.Models
         public string public_holiday { get; set; }
         public string logoimage_path { get; set; }
         public string indeximage_path { get; set; }
+        public string description { get; set; }
     }
 }

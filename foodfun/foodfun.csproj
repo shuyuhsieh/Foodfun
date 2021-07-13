@@ -399,6 +399,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\about\at1.jpg" />
+    <Content Include="img\about\at2.jpg" />
+    <Content Include="img\about\at3.jpg" />
+    <Content Include="img\about\at4.jpg" />
+    <Content Include="img\about\val1.jpg" />
+    <Content Include="img\about\val2.jpg" />
+    <Content Include="img\about\val3.jpg" />
+    <Content Include="img\about\val4.jpg" />
     <Content Include="img\drink\billy-kwok-vfiA7rRtjWo-unsplash.jpg" />
     <Content Include="img\drink\danielle-macinnes-IuLgi9PWETU-unsplash.jpg" />
     <Content Include="img\drink\demi-deherrera-L-sm1B4L1Ns-unsplash.jpg" />
@@ -1040,7 +1048,6 @@
     <Folder Include="Areas\Admin\Views\Users\" />
     <Folder Include="Areas\Staff\Data\" />
     <Folder Include="Areas\Staff\Views\Shared\" />
-    <Folder Include="img\NewFolder2\" />
     <Folder Include="_master\assets\img\about\" />
   </ItemGroup>
   <ItemGroup>

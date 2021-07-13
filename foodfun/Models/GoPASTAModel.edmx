@@ -4,14 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GoPASTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'GoPASTA.dbo.About' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+    <Schema Namespace="GoPASTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="About">
           <Key>
-            <PropertyRef Name="companyid" />
+            <PropertyRef Name="rowid" />
           </Key>
-          <Property Name="companyid" Type="int" Nullable="false" />
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyid" Type="int" />
           <Property Name="sortid" Type="int" />
           <Property Name="corevalue_title" Type="nchar" MaxLength="50" />
           <Property Name="corevalue_descpt" Type="nchar" MaxLength="250" />
@@ -55,6 +54,7 @@
           <Property Name="public_holiday" Type="nvarchar" MaxLength="50" />
           <Property Name="logoimage_path" Type="nvarchar" MaxLength="50" />
           <Property Name="indeximage_path" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Concepts">
           <Key>
@@ -216,6 +216,7 @@
           <Property Name="isvalidate" Type="bit" />
         </EntityType>
         <EntityContainer Name="GoPASTAModelStoreContainer">
+          <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
@@ -232,19 +233,8 @@
           <EntitySet Name="Propertys" EntityType="Self.Propertys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="About" EntityType="Self.About" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [About].[companyid] AS [companyid], 
-    [About].[sortid] AS [sortid], 
-    [About].[corevalue_title] AS [corevalue_title], 
-    [About].[corevalue_descpt] AS [corevalue_descpt], 
-    [About].[about_path] AS [about_path], 
-    [About].[corevalue_path] AS [corevalue_path]
-    FROM [dbo].[About] AS [About]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GoPASTAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -285,6 +275,7 @@
           <Property Name="public_holiday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="logoimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="indeximage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Concepts">
           <Key>
@@ -445,17 +436,6 @@
           <Property Name="isvarify" Type="Boolean" />
           <Property Name="isvalidate" Type="Boolean" />
         </EntityType>
-        <EntityType Name="About">
-          <Key>
-            <PropertyRef Name="companyid" />
-          </Key>
-          <Property Name="companyid" Type="Int32" Nullable="false" />
-          <Property Name="sortid" Type="Int32" />
-          <Property Name="corevalue_title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="corevalue_descpt" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
-          <Property Name="about_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="corevalue_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-        </EntityType>
         <EntityContainer Name="GoPASTAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carts" EntityType="Self.Carts" />
           <EntitySet Name="Categorys" EntityType="Self.Categorys" />
@@ -473,8 +453,20 @@
           <EntitySet Name="Propertys" EntityType="Self.Propertys" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="About" EntityType="Self.About" />
+          <EntitySet Name="About" EntityType="GoPASTAModel.About" />
         </EntityContainer>
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyid" Type="Int32" />
+          <Property Name="sortid" Type="Int32" />
+          <Property Name="corevalue_title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="corevalue_descpt" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="about_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="corevalue_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -519,6 +511,7 @@
                 <ScalarProperty Name="public_holiday" ColumnName="public_holiday" />
                 <ScalarProperty Name="logoimage_path" ColumnName="logoimage_path" />
                 <ScalarProperty Name="indeximage_path" ColumnName="indeximage_path" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -697,12 +690,13 @@
           <EntitySetMapping Name="About">
             <EntityTypeMapping TypeName="GoPASTAModel.About">
               <MappingFragment StoreEntitySet="About">
-                <ScalarProperty Name="companyid" ColumnName="companyid" />
-                <ScalarProperty Name="sortid" ColumnName="sortid" />
-                <ScalarProperty Name="corevalue_title" ColumnName="corevalue_title" />
-                <ScalarProperty Name="corevalue_descpt" ColumnName="corevalue_descpt" />
-                <ScalarProperty Name="about_path" ColumnName="about_path" />
                 <ScalarProperty Name="corevalue_path" ColumnName="corevalue_path" />
+                <ScalarProperty Name="about_path" ColumnName="about_path" />
+                <ScalarProperty Name="corevalue_descpt" ColumnName="corevalue_descpt" />
+                <ScalarProperty Name="corevalue_title" ColumnName="corevalue_title" />
+                <ScalarProperty Name="sortid" ColumnName="sortid" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
