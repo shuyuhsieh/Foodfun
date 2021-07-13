@@ -39,6 +39,7 @@ public static class StaffOrder
             {
                 orders = db.Orders.Where(m => m.isclosed == isclosed)
                     .Where(m => m.SchedulOrderTime >= DateTime.Today && m.SchedulOrderTime < todayEnd)
+                    .Where(m=>m.orderstatus_no != "TBC")
                     .OrderBy(m => m.SchedulOrderTime).ToList();
             }
             else if (date.Date > DateTime.Today.Date)

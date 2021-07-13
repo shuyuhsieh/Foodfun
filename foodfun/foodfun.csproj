@@ -925,6 +925,8 @@
     <Content Include="Views\MemberOrder\Index.cshtml" />
     <Content Include="Views\MemberOrder\_PartialOrder.cshtml" />
     <Content Include="Views\Shared\_PartialDatatableCss.cshtml" />
+    <Content Include="Views\Shared\_LayoutPopup.cshtml" />
+    <Content Include="Views\CheckOrder\GetNewOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

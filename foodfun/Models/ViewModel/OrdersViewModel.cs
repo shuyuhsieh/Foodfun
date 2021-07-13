@@ -29,7 +29,9 @@ namespace foodfun.Models
         [Display(Name = "用餐方式")]
         public string mealservice_name { get; set; }
 
-        
+        [Display(Name = "取餐時間")]
+        public System.DateTime SchedulOrderTime { get; set; }
+
         public List<OrdersDetails> orderDetails { get; set; }
 
     }

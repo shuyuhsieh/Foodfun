@@ -49,8 +49,8 @@
                                     </td>
                                     <td>
 
+                                        <span>@Html.ValueFor(modelItem => item.orders.SchedulOrderTime, "{0:MM/dd}")</span>
                                        <h6> @Html.ValueFor(modelItem => item.orders.SchedulOrderTime, "{0:HH:mm}")</h6>
-                                        <span>@Html.ValueFor(modelItem => item.orders.SchedulOrderTime, "{0:MM:dd}")</span>
                                     </td>
                                     <td class="orders-total">
                                         @Html.DisplayFor(modelItem => item.orders.total)

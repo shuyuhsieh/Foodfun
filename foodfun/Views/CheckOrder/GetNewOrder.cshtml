@@ -1,0 +1,30 @@
+﻿@model foodfun.Models.OrdersViewModel
+
+@{
+    ViewBag.Title = "GetNewOrder";
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+
+
+
+<div class="col-12">
+    <h4 class="modal-title text-center" id="exampleModalLabel"> @Model.order_no 訂餐明細</h4>
+    <hr/>
+    <h5>取餐時間 : <span>@Model.SchedulOrderTime</span></h5>
+    <hr/>
+    @foreach (var item1 in Model.orderDetails)
+    {
+        <span>@item1.qty x </span>
+
+        <span class="h5">@Shop.GetProductName(item1.product_no)</span>
+        <span class="h6">@item1.Property_select</span>
+
+        <span class="float-right">$@item1.each_item_amount</span>
+        <hr />
+    }
+
+    <span class="float-right">用餐金額: $@Model.total </span>
+
+</div>
+
+

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using foodfun.Models;
 
 namespace foodfun.Controllers
 {
@@ -52,5 +53,41 @@ namespace foodfun.Controllers
         {
             CusHub.Show();
         }
+
+
+
+        public ActionResult GetNewOrder(string id)
+        {
+            using (GoPASTAEntities db = new GoPASTAEntities())
+            {
+                var orderInfo = db.Orders.Where(m => m.order_no == id).FirstOrDefault();
+                var orderInfoList = db.OrdersDetails.Where(m => m.order_no == id).ToList();
+                OrdersViewModel order = new OrdersViewModel()
+                {
+                    order_no = id,
+                    total = orderInfo.total,
+                    SchedulOrderTime = orderInfo.SchedulOrderTime,
+                    ispaided = orderInfo.ispaided,
+                    mealservice_name = db.MealService.Where(m => m.mealservice_no == orderInfo.mealservice_no).Select(m => m.mealservice_name).FirstOrDefault(),
+                    orderDetails = orderInfoList
+                };
+
+                return View(order);
+            }
+
+        }
+
+        public JsonResult ConfirmOrder(string id)
+        {
+            using (GoPASTAEntities db = new GoPASTAEntities())
+            {
+                var data = db.Orders.Where(m => m.order_no == id).FirstOrDefault();
+                data.orderstatus_no = "TBP";
+                db.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
     }
 }
