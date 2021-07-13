@@ -183,7 +183,7 @@ namespace foodfun.Areas.Staff.Controllers
 
         public JsonResult CheckoutLater()
         {
-            bool result = false;
+     
             ConfirmationViewModel model = (ConfirmationViewModel)TempData["CheckoutInfo"];
 
             try
@@ -191,7 +191,6 @@ namespace foodfun.Areas.Staff.Controllers
                 Cart.AddNewOrder(model, false, "TBP");
                 string OrderNo = Cart.GetOrderNO();
                 Cart.StaffNewOrderDetail();
-                result = true;
                 return Json(OrderNo, JsonRequestBehavior.AllowGet);
             }
             catch ( Exception ex)
