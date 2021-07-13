@@ -31,6 +31,7 @@ namespace foodfun.Controllers
                     .Where(m => m.account_name == model.UserNo)
                     .Where(m => m.password == model.Password)
                     .Where(m => m.isvarify == true)
+                    .Where(m => m.isvalidate == true)
                     .FirstOrDefault();
                 if (data == null)
                 {

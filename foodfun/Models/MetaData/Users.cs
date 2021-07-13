@@ -62,6 +62,9 @@ namespace foodfun.Models
 
             [Display(Name = "是否認證")]
             public Nullable<int> isvarify { get; set; }
+
+            [Display(Name = "帳戶是否有效")]
+            public Nullable<int> isvalidate { get; set; }
         }
     }
 }

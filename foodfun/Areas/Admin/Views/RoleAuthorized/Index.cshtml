@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<foodfun.Models.Users>
 
 @{
-    ViewBag.Title = "會原角色資料";
+    ViewBag.Title = "會員角色資料";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -25,10 +25,8 @@
                                     <th> @Html.DisplayNameFor(model => model.role_no)</th>
                                     <th> @Html.DisplayNameFor(model => model.mname)</th>
                                     <th> @Html.DisplayNameFor(model => model.account_name)</th>
-                                    @*<th> @Html.DisplayNameFor(model => model.isvalidate)</th>*@
+                                    <th> @Html.DisplayNameFor(model => model.isvalidate)</th>
                                     <th> 功能選項</th>
-
-                                    @*<th> @Html.ActionLink("新增記錄", "Create", "MemberBack", null, new { @class = "btn btn-primary" })</th>*@
 
                                 </tr>
                             </thead>
@@ -50,9 +48,9 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.account_name)
                                         </td>
-                                        @*<td>
+                                        <td>
                                             @Html.DisplayFor(modelItem => item.isvalidate)
-                                        </td>*@
+                                        </td>
 
                                         <td>
                                             @Html.ActionLink("修改", "Edit", "RoleAuthorized", new { id = item.mno }, new { @class = "btn btn-success" })

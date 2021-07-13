@@ -1,6 +1,4 @@
-﻿@*@using PagedList.Mvc;
-@using PagedList;*@
-
+﻿
 
 @model IEnumerable<foodfun.Models.Propertys>
 
@@ -11,10 +9,8 @@
 
 <h2>屬性設定</h2>
 
-<html class="no-js" lang="">
 
 
-<body class="property-content">
 
     <div class="content">
         <div class="animated fadeIn">
@@ -24,7 +20,7 @@
                     <div class="card">
                         <div class="card-header">
 
-                            @Html.ActionLink("新增記錄", "Create", "Propertys", null, new { @class = "btn btn-primary" })
+                            @*   @Html.ActionLink("新增記錄", "Create", "Propertys", null, new { @class = "btn btn-primary" })*@
 
                         </div>
                         <div class="card-body">
@@ -37,7 +33,7 @@
                                         <td> @Html.DisplayNameFor(model => model.add_price)</td>
                                         <td> @Html.DisplayNameFor(model => model.property_value)</td>
                                         <td> @Html.DisplayNameFor(model => model.remark)</td>
-                                        @*<th> @Html.ActionLink("新增記錄", "Create", "Propertys", null, new { @class = "btn btn-primary" })</th>*@
+                                        <th> @Html.ActionLink("新增記錄", "Create", "Propertys", null, new { @class = "btn btn-primary" })</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,15 +74,7 @@
                                             </td>
                                         </tr>
                                     }
-                                    <tr>
-                                        @*<td colspan="12">
-
-                                            @Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", new { page = x }))
-                                                  轉成(IPagedList) 型別,  表頭table (roleList)   ,Url.Action  ( "list"指按下去產生list清單,之後看給Page多少
-
-
-                                        </td>*@
-                                    </tr>
+                                   
 
                                 </tbody>
                             </table>
@@ -100,11 +88,9 @@
     </div><!-- .content -->
 
 
-    <div class="clearfix"></div>
 
 
 
-</body>
-</html>
+
 
 
