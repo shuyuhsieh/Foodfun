@@ -82,19 +82,6 @@ public class AdminCart
     }
 
 
-    //#region IEnumerator
-
-    //IEnumerator<Carts> IEnumerable<Carts>.GetEnumerator()
-    //{
-    //    return this.cartItems.GetEnumerator();
-    //}
-
-    //System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-    //{
-    //    return this.cartItems.GetEnumerator();
-    //}
-
-    //#endregion
 
 
 
