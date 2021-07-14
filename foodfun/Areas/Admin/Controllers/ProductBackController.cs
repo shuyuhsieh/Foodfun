@@ -66,6 +66,10 @@ namespace foodfun.Areas.Admin.Controllers
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
+
+               
+                ViewBag.CtgryDropdownList = Backend.CtgryDropdownList();    
+                  
                 var model = db.Products.Where(m => m.product_no == id).FirstOrDefault();
                 return View(model);
             }

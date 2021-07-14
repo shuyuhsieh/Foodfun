@@ -32,10 +32,10 @@
                                 <tr>
                                     <th> @Html.DisplayNameFor(model => model.products.product_no)</th>
                                     <th> @Html.DisplayNameFor(model => model.category_name)</th>
-                                    <th> a商品編號</th>
                                     <th> @Html.DisplayNameFor(model => model.products.product_name)</th>
                                     <th> @Html.DisplayNameFor(model => model.products.price_avgcost)</th>
                                     <th> @Html.DisplayNameFor(model => model.products.price_sale)</th>
+                                    <th> @Html.DisplayNameFor(model => model.products.stock_qty)</th>
                                     <th> @Html.DisplayNameFor(model => model.products.image_path)</th>
                                     <th> @Html.ActionLink("新增記錄", "Create", "ProductBack", null, new { @class = "btn btn-primary" })</th>
                                 </tr>
@@ -45,43 +45,44 @@
 
                                 @foreach (var item in Model)
                                 {
-                                <tr>
+                                    <tr>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.products.product_no)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.category_name)
-                                    </td>
-                                    <td>
-                                       @Backend.GetCodeName(item.products.category_no)
-                                    </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.products.product_no)
+                                        </td>
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.category_name)
+                                            </td>*@
+                                        <td>
+                                            @Backend.GetCodeName(item.products.category_no)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.products.product_name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.products.price_avgcost)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.products.price_sale)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.products.stock_qty)
+                                        </td>
+                                        <td>
 
+                                            <img src="@string.Format("../../img/product/{0}/{1}.jpg?t={2}", item.products.category_no , item.products.product_no , DateTime.Now.ToString("yyyMMddHHmmss"))" style="width:80px;" alt="x" />
+                                        </td>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.products.product_name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.products.price_avgcost)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.products.price_sale)
-                                    </td>
-                                    <td>
+                                        <td>
 
-                                        <img src="@string.Format("../../img/product/{0}/{1}.jpg?t={2}", item.products.category_no , item.products.product_no , DateTime.Now.ToString("yyyMMddHHmmss"))" style="width:80px;" alt="x" />
-                                    </td>
+                                            @Html.ActionLink("修改", "Edit", "ProductBack", new { id = item.products.product_no }, new { @class = "btn btn-success" })
 
-                                    <td>
+                                            @Html.ActionLink("刪除", "Delete", "ProductBack", new { id = item.products.product_no }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?')" })
 
-                                        @Html.ActionLink("修改", "Edit", "ProductBack", new { id = item.products.product_no }, new { @class = "btn btn-info" })
+                                            <button class="btn btn-info" style="background-color:#FFE4E1"> @Html.ActionLink("上傳", "Upload", new { product_no = item.products.product_no })</button>
 
-                                        @Html.ActionLink("刪除", "Delete", "ProductBack", new { id = item.products.product_no }, new { @class = "btn btn-success", onclick = "return confirm('是否確定要刪除?')" })
-
-                                        <button class="btn btn-primary" style="background-color:#FFE4E1"> @Html.ActionLink("上傳", "Upload", new { product_no = item.products.product_no })</button>
-
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>

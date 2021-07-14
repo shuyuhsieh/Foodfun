@@ -11,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Products</h4>
         <hr />
@@ -37,7 +37,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.category_no, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.category_no, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.category_no, (IEnumerable<SelectListItem>)ViewBag.CtgryDropdownList, new { @class = "form-control chosen-select" })
+                
+                @*@Html.EditorFor(model => model.category_no, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.category_no, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,13 +60,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.discount_price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.discount_price, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.discount_price, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.stock_qty, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -75,34 +77,26 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.image_path, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.image_path, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.image_path, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.browse_count, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.browse_count, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.browse_count, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.browse_count, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.browse_count, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.browse_count, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.istop, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.istop)
+                    @Html.EditorFor(model => model.istop, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.istop, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -112,7 +106,7 @@
             @Html.LabelFor(model => model.issale, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.issale)
+                    @Html.EditorFor(model => model.issale, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.issale, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -122,7 +116,7 @@
             @Html.LabelFor(model => model.ishot, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.ishot)
+                    @Html.EditorFor(model => model.ishot, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ishot, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -138,7 +132,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="儲存異動" class="btn btn-default" />
+                <input type="submit" value="儲存異動" class="btn btn-success" />
                 @Html.ActionLink("返回", "Index", "ProductBack", null, new { @class = "btn btn-info" })
             </div>
         </div>

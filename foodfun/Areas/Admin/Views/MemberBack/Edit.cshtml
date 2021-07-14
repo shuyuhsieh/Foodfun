@@ -1,16 +1,24 @@
 ﻿@model foodfun.Models.Users
+@*會員管理*@
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+@*@section Scripts {
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+}*@
+
+<script src="~/Scripts/datepicker-zh-TW.js"></script>
+<script src="~/Scripts/datepicker.js"></script>
+
 <h2>會員資料修改</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Users</h4>
         <hr />
@@ -18,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.mno, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.mno, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.mno, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.mno, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -31,15 +39,18 @@
             </div>
         </div>
 
-        @Html.HiddenFor(model => model.account_name)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.account_name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.account_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.account_name, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        @Html.HiddenFor(model => model.password)
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.id, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -52,7 +63,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.birthday, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.birthday, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.birthday, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.birthday, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -84,24 +95,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.role_no, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.role_no, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.role_no, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.role_no, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.varify_code, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.varify_code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.varify_code, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.varify_code)
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.isvarify, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.isvarify)
+                    @Html.EditorFor(model => model.isvarify, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                     @Html.ValidationMessageFor(model => model.isvarify, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -111,7 +117,8 @@
             @Html.LabelFor(model => model.isvalidate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.isvalidate)
+                    @* @Html.EditorFor(model => model.mno, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                    @Html.EditorFor(model => model.isvalidate, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                     @Html.ValidationMessageFor(model => model.isvalidate, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -119,7 +126,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="儲存異動" class="btn btn-default" />
+                <input type="submit" value="儲存異動" class="btn btn-success" />
                 @Html.ActionLink("返回", "Index", "MemberBack", null, new { @class = "btn btn-info" })
             </div>
         </div>

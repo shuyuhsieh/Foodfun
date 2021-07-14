@@ -22,6 +22,7 @@ namespace foodfun.Areas.Admin.Controllers
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
 
+
                 Categorys model = new Categorys();
 
                 return View(model);
@@ -39,7 +40,7 @@ namespace foodfun.Areas.Admin.Controllers
             {
                 db.Categorys.Add(model);
                 db.SaveChanges();
-                return RedirectToAction("Index",new {id=model.parentid });
+                return RedirectToAction("Index", new { id = model.parentid });
             }
         }
 
@@ -63,11 +64,14 @@ namespace foodfun.Areas.Admin.Controllers
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
+                ViewBag.ParentIdDropdownList = Backend.ParentIdDropdownList();
                 if (id == 0)
                 {
+
                     Categorys new_model = new Categorys();
                     return View(new_model);
                 }
+
                 var models = db.Categorys.Where(m => m.rowid == id).FirstOrDefault();
                 return View(models);
             }
@@ -77,7 +81,7 @@ namespace foodfun.Areas.Admin.Controllers
         [LoginAuthorize(RoleList = "Admin")]
         public ActionResult Edit(Categorys models)
         {
-           
+
             if (ModelState.IsValid)
             {
                 using (GoPASTAEntities db = new GoPASTAEntities())
@@ -102,7 +106,7 @@ namespace foodfun.Areas.Admin.Controllers
                         db.Categorys.Add(models);
                     }
                     db.SaveChanges();
-                    
+
                 }
             }
             return RedirectToAction("Index", new { id = models.parentid });

@@ -74,7 +74,7 @@
           <Property Name="total" Type="decimal" Precision="18" Scale="4" />
           <Property Name="orderstatus_no" Type="nvarchar" MaxLength="50" />
           <Property Name="mealservice_no" Type="nvarchar" MaxLength="50" />
-          <Property Name="SchedulOrderTime" Type="datetime" Nullable="false" />
+          <Property Name="SchedulOrderTime" Type="datetime" />
           <Property Name="table_no" Type="nvarchar" MaxLength="50" />
           <Property Name="paid_no" Type="nvarchar" MaxLength="50" />
           <Property Name="receive_name" Type="nvarchar" MaxLength="50" />
@@ -367,8 +367,8 @@
           <EntitySet Name="Products" EntityType="GoPASTAModel.Products" />
           <EntitySet Name="Concepts" EntityType="GoPASTAModel.Concepts" />
           <EntitySet Name="Profiles" EntityType="GoPASTAModel.Profiles" />
-          <EntitySet Name="ProgramList" EntityType="GoPASTAModel.ProgramList" />
           <EntitySet Name="Company" EntityType="GoPASTAModel.Company" />
+          <EntitySet Name="ProgramList" EntityType="GoPASTAModel.ProgramList" />
         </EntityContainer>
         <EntityType Name="Orders">
           <Key>
@@ -383,7 +383,7 @@
           <Property Name="total" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="orderstatus_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="mealservice_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SchedulOrderTime" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="SchedulOrderTime" Type="DateTime" Precision="3" />
           <Property Name="table_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="paid_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="receive_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -433,18 +433,6 @@
           <Property Name="company_profile" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="profileimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="ProgramList">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="parentid" Type="Int32" />
-          <Property Name="filter_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pro_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="rowid" />
@@ -460,6 +448,18 @@
           <Property Name="public_holiday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="logoimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="indeximage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProgramList">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parentid" Type="Int32" />
+          <Property Name="filter_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pro_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -661,19 +661,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProgramList">
-            <EntityTypeMapping TypeName="GoPASTAModel.ProgramList">
-              <MappingFragment StoreEntitySet="ProgramList">
-                <ScalarProperty Name="action_name" ColumnName="action_name" />
-                <ScalarProperty Name="controller_name" ColumnName="controller_name" />
-                <ScalarProperty Name="pro_name" ColumnName="pro_name" />
-                <ScalarProperty Name="pro_no" ColumnName="pro_no" />
-                <ScalarProperty Name="filter_role" ColumnName="filter_role" />
-                <ScalarProperty Name="parentid" ColumnName="parentid" />
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Company">
             <EntityTypeMapping TypeName="GoPASTAModel.Company">
               <MappingFragment StoreEntitySet="Company">
@@ -687,6 +674,19 @@
                 <ScalarProperty Name="tel" ColumnName="tel" />
                 <ScalarProperty Name="brandname" ColumnName="brandname" />
                 <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramList">
+            <EntityTypeMapping TypeName="GoPASTAModel.ProgramList">
+              <MappingFragment StoreEntitySet="ProgramList">
+                <ScalarProperty Name="action_name" ColumnName="action_name" />
+                <ScalarProperty Name="controller_name" ColumnName="controller_name" />
+                <ScalarProperty Name="pro_name" ColumnName="pro_name" />
+                <ScalarProperty Name="pro_no" ColumnName="pro_no" />
+                <ScalarProperty Name="filter_role" ColumnName="filter_role" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
