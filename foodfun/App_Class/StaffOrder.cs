@@ -48,6 +48,11 @@ public static class StaffOrder
                     .Where(m => m.SchedulOrderTime >= todayEnd)
                     .OrderBy(m => m.SchedulOrderTime).ToList();
             }
+            else if (date.Date < DateTime.Today.Date)
+            {
+                orders = db.Orders.Where(m => m.SchedulOrderTime <= date.Date)
+                    .OrderBy(m => m.SchedulOrderTime).ToList();
+            }
 
 
             List<StaffOrderViewModel> ordersViewModels = new List<StaffOrderViewModel>();

@@ -171,6 +171,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategorysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HistoryOrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\MemberBackController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentsController.cs" />
@@ -504,6 +505,9 @@
     <Content Include="Areas\Staff\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Staff\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Staff\Views\StaffOrder\ReserveOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\UserInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ResetPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\HistoryOrder\Index.cshtml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />

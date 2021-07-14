@@ -159,7 +159,7 @@ namespace foodfun.Controllers
 
         }
         [HttpPost]
-        [LoginAuthorize(RoleList = "User,Admin,Worker")]
+        [LoginAuthorize(RoleList = "Member")]
         public ActionResult UserInfo(Users model)
         {
 
@@ -182,7 +182,7 @@ namespace foodfun.Controllers
         }
 
         [HttpGet]
-        [LoginAuthorize(RoleList = "User,Admin,Worker")]
+        [LoginAuthorize(RoleList = "Member")]
         public ActionResult ResetPassword(string no)
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
@@ -193,7 +193,7 @@ namespace foodfun.Controllers
         }
 
         [HttpPost]
-        [LoginAuthorize(RoleList = "User,Admin,Worker")]
+        [LoginAuthorize(RoleList = "Member")]
         public ActionResult ResetPassword(ResetPasswordViewModel model)
         {
 
