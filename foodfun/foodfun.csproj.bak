@@ -343,9 +343,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-<<<<<<< HEAD
     <Content Include="Content\jquery-confirm.min.css" />
-=======
     <Content Include="Content\css\jquery.dataTables.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
@@ -508,7 +506,6 @@
     <Content Include="Content\images\sort_asc.png" />
     <Content Include="Content\images\sort_both.png" />
     <Content Include="Content\images\sort_desc.png" />
->>>>>>> Doris
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -628,13 +625,11 @@
     <Content Include="Areas\Admin\Views\Propertys\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Propertys\Index.cshtml" />
     <Content Include="Areas\Staff\Views\web.config" />
-<<<<<<< HEAD
     <Content Include="Areas\Staff\Views\StaffProd_Check\_PartialOrderBox.cshtml" />
     <Content Include="Areas\Staff\Views\StaffProd_Check\Index.cshtml" />
     <Content Include="Areas\Staff\Views\StaffProd_Check\Checkout.cshtml" />
     <Content Include="Areas\Staff\Views\StaffOrder\OnlineOrder.cshtml" />
-=======
-  
+
     <Content Include="Areas\Admin\Views\Payments\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Payments\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Payments\Index.cshtml" />
@@ -649,7 +644,6 @@
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
->>>>>>> Doris
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\datepicker-zh-TW.js" />
     <Content Include="Scripts\datepicker.js" />

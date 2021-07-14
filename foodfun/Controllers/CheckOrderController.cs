@@ -66,7 +66,7 @@ namespace foodfun.Controllers
                 {
                     order_no = id,
                     total = orderInfo.total,
-                    SchedulOrderTime = orderInfo.SchedulOrderTime,
+                    SchedulOrderTime = (DateTime)orderInfo.SchedulOrderTime,
                     ispaided = orderInfo.ispaided,
                     mealservice_name = db.MealService.Where(m => m.mealservice_no == orderInfo.mealservice_no).Select(m => m.mealservice_name).FirstOrDefault(),
                     orderDetails = orderInfoList
