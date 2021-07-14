@@ -79,7 +79,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -96,7 +96,7 @@
             @Html.LabelFor(model => model.istop, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.istop)
+                    @Html.EditorFor(model => model.istop, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.istop, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -106,7 +106,7 @@
             @Html.LabelFor(model => model.issale, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.issale)
+                    @Html.EditorFor(model => model.issale, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.issale, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -116,7 +116,7 @@
             @Html.LabelFor(model => model.ishot, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.ishot)
+                    @Html.EditorFor(model => model.ishot, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ishot, "", new { @class = "text-danger" })
                 </div>
             </div>
