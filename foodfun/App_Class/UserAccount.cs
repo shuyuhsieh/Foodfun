@@ -42,11 +42,19 @@ public static class UserAccount
     /// <summary>
     /// 使用者電子信箱
     /// </summary>
-    public static string UserEmail { get; set; } = "";
+    public static string UserEmail
+    {
+        get { return (HttpContext.Current.Session["UserEmail"] == null) ? "" : HttpContext.Current.Session["UserEmail"].ToString(); }
+        set { HttpContext.Current.Session["UserEmail"] = value; }
+    }
     /// <summary>
     /// 使用者是否已登入
     /// </summary>
-    public static bool IsLogin { get; set; } = false;
+    public static bool IsLogin
+    {
+        get { return (HttpContext.Current.Session["IsLogin"] == null) ? false : (bool)HttpContext.Current.Session["IsLogin"]; }
+        set { HttpContext.Current.Session["IsLogin"] = value; }
+    }
 
     public static void Login()
     {
