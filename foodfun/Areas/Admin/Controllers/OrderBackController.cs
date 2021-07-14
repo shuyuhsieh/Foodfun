@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace foodfun.Areas.Admin.Controllers
 {
-    public class HistoryOrderController : Controller
+    public class OrderBackController : Controller
     {
         // GET: Admin/HistoryOrder
         public ActionResult Index()

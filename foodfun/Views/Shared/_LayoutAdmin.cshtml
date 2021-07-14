@@ -13,7 +13,7 @@
 <head>
 
 
-    <title>@ViewBag.Title</title>  
+    <title>@ViewBag.Title</title>
     <link rel="shortcut icon" href="~/img/logoicon.png" type="image/x-icon" />
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
@@ -76,7 +76,7 @@
             <div class="top-left">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="./"><img src="@Url.Content("~/img/logo.png")" alt="Logo"></a>
-                   @* <a class="navbar-brand hidden" href="./"><img src="@Url.Content("~/img/logoicon.png")" alt="Logo"></a>*@
+                    @* <a class="navbar-brand hidden" href="./"><img src="@Url.Content("~/img/logoicon.png")" alt="Logo"></a>*@
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -112,12 +112,17 @@
         </header>
         <!-- /#header -->
         <!-- Breadcrumbs-->
+        <div class="content">
+            <!-- Animated -->
+            <div class="animated fadeIn">
 
-        @RenderBody()
+                @RenderBody()
+            </div>
+        </div>
 
         <!-- Footer -->
         <footer class="site-footer">
-            <div class="footer-inner bg-white">
+            <div class="footer-inner ">
                 <div class="row">
                     <div class="col-sm-6">
                         Copyright &copy; @DateTime.Today.Year <a href=#>@AppService.AppName</a>
