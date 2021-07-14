@@ -51,6 +51,7 @@ namespace foodfun.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [LoginAuthorize(RoleList = "Admin,Staff")]
         public ActionResult ResetPassword()
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
@@ -61,23 +62,31 @@ namespace foodfun.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult ResetPassword(ResetPasswordViewModel model)
+        [LoginAuthorize(RoleList = "Admin,Staff")]
+        public JsonResult ResetPassword(ResetPasswordViewModel model)
         {
-
-            if (!ModelState.IsValid) return View(model);
+            //if (!@ModelState.IsValid) return View(model);
 
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
+                bool result = false;
                 Users user = db.Users.Where(m => m.account_name == UserAccount.UserNo).FirstOrDefault();
                 if (user != null)
                 {
-                    user.password = model.NewPassword;
-                    db.SaveChanges();
-
+                    if (model.NewPassword == user.password)
+                    {
+                        return Json(result, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        user.password = model.NewPassword;
+                        db.SaveChanges();
+                        result = true;
+                        return Json(result, JsonRequestBehavior.AllowGet);
+                    }
                 }
-                TempData["HeaderText"] = "密碼變更完成";
-                TempData["MessageText"] = "密碼已變更，下次請使用新密碼登入!!";
-                return RedirectToAction("MessageText");
+                return Json(result, JsonRequestBehavior.AllowGet);
+
             }
         }
 
