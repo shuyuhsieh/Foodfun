@@ -10,7 +10,6 @@
             <PropertyRef Name="rowid" />
           </Key>
           <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="companyid" Type="int" />
           <Property Name="sortid" Type="int" />
           <Property Name="corevalue_title" Type="nchar" MaxLength="50" />
           <Property Name="corevalue_descpt" Type="nchar" MaxLength="250" />
@@ -360,8 +359,8 @@
           <EntitySet Name="Orders" EntityType="GoPASTAModel.Orders" />
           <EntitySet Name="Products" EntityType="GoPASTAModel.Products" />
           <EntitySet Name="ProgramList" EntityType="GoPASTAModel.ProgramList" />
-          <EntitySet Name="About" EntityType="GoPASTAModel.About" />
           <EntitySet Name="Company" EntityType="GoPASTAModel.Company" />
+          <EntitySet Name="About" EntityType="GoPASTAModel.About" />
         </EntityContainer>
         <EntityType Name="Orders">
           <Key>
@@ -421,18 +420,6 @@
           <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="About">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="companyid" Type="Int32" />
-          <Property Name="sortid" Type="Int32" />
-          <Property Name="corevalue_title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="corevalue_descpt" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
-          <Property Name="about_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="corevalue_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="rowid" />
@@ -448,6 +435,17 @@
           <Property Name="logoimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="indeximage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sortid" Type="Int32" />
+          <Property Name="corevalue_title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="corevalue_descpt" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="about_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="corevalue_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -643,19 +641,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="About">
-            <EntityTypeMapping TypeName="GoPASTAModel.About">
-              <MappingFragment StoreEntitySet="About">
-                <ScalarProperty Name="corevalue_path" ColumnName="corevalue_path" />
-                <ScalarProperty Name="about_path" ColumnName="about_path" />
-                <ScalarProperty Name="corevalue_descpt" ColumnName="corevalue_descpt" />
-                <ScalarProperty Name="corevalue_title" ColumnName="corevalue_title" />
-                <ScalarProperty Name="sortid" ColumnName="sortid" />
-                <ScalarProperty Name="companyid" ColumnName="companyid" />
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Company">
             <EntityTypeMapping TypeName="GoPASTAModel.Company">
               <MappingFragment StoreEntitySet="Company">
@@ -669,6 +654,18 @@
                 <ScalarProperty Name="fax" ColumnName="fax" />
                 <ScalarProperty Name="tel" ColumnName="tel" />
                 <ScalarProperty Name="brandname" ColumnName="brandname" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="About">
+            <EntityTypeMapping TypeName="GoPASTAModel.About">
+              <MappingFragment StoreEntitySet="About">
+                <ScalarProperty Name="corevalue_path" ColumnName="corevalue_path" />
+                <ScalarProperty Name="about_path" ColumnName="about_path" />
+                <ScalarProperty Name="corevalue_descpt" ColumnName="corevalue_descpt" />
+                <ScalarProperty Name="corevalue_title" ColumnName="corevalue_title" />
+                <ScalarProperty Name="sortid" ColumnName="sortid" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>

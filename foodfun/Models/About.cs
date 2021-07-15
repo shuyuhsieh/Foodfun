@@ -15,7 +15,6 @@ namespace foodfun.Models
     public partial class About
     {
         public int rowid { get; set; }
-        public Nullable<int> companyid { get; set; }
         public Nullable<int> sortid { get; set; }
         public string corevalue_title { get; set; }
         public string corevalue_descpt { get; set; }

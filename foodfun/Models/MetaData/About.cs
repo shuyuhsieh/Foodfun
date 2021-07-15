@@ -13,13 +13,11 @@ namespace foodfun.Models
         {
             [Key]
             public int rowid { get; set; }
-            [Display(Name = "公司編號")]
-            
-            public Nullable<int> companyid { get; set; }
+
             [Display(Name = "項次")]
             [Required(ErrorMessage = "項次不可空白")]
             public Nullable<int> sortid { get; set; }
-            [Display(Name = "理念標題")]
+            [Display(Name = "理念")]
             [Required(ErrorMessage = "理念標題不可空白")]
             public string corevalue_title { get; set; }
             [Display(Name = "理念說明")]

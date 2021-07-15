@@ -39,7 +39,7 @@ namespace foodfun.Models
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<ProgramList> ProgramList { get; set; }
-        public virtual DbSet<About> About { get; set; }
         public virtual DbSet<Company> Company { get; set; }
+        public virtual DbSet<About> About { get; set; }
     }
 }
