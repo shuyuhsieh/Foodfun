@@ -128,20 +128,20 @@ public static class Backend
 
             List<SelectListItem> parntid = new List<SelectListItem>();
 
-            var datas = db.Categorys.OrderBy(m => m.category_name).ToList();
+            var datas = db.Categorys.OrderBy(m => m.parentid).ToList();
             if (datas != null)
 
             {
                 foreach (var data in datas)
                 {
-                    SelectListItem item = new SelectListItem();                   
+                    SelectListItem item = new SelectListItem();
 
-                   
+                   // item.Value = data.category_no;
                     item.Text = data.category_name;
 
                     parntid.Add(item);
                 }
-                parntid.First().Selected = true;
+               parntid.First().Selected = true;
 
             }
 
