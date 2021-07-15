@@ -10,13 +10,17 @@ namespace foodfun.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         GoPASTAEntities db = new GoPASTAEntities();
+
+        List<string> TimeList = new List<string>();
+        List<int> RevenueList = new List<int>();
+
         // GET: Admin/Admin
         [LoginAuthorize(RoleList = "Admin")]
         public ActionResult Index()
         {
-            ViewBag.TodayRevenue = Order.GetRevenue(DateTime.Today, DateTime.Today);
-            ViewBag.TodaySaleItemNum = Order.GetSaleItemNum(DateTime.Today, DateTime.Today);
-            ViewBag.TodayNumOfCust = Order.GetNumOfCust(DateTime.Today, DateTime.Today);
+            ViewBag.TodayRevenue = Order.GetRevenue(DateTime.Today, DateTime.Today.AddDays(1));
+            ViewBag.TodaySaleItemNum = Order.GetSaleItemNum(DateTime.Today, DateTime.Today.AddDays(1));
+            ViewBag.TodayNumOfCust = Order.GetNumOfCust(DateTime.Today, DateTime.Today.AddDays(1));
             int TodaySalePerCust;
             if (ViewBag.TodayNumOfCust == 0)
             {
@@ -28,6 +32,10 @@ namespace foodfun.Areas.Admin.Controllers
             }
 
             ViewBag.TodaySalePerCust = TodaySalePerCust;
+
+            GetTodayHourList();
+            ViewBag.TimeList = Newtonsoft.Json.JsonConvert.SerializeObject(TimeList);
+            ViewBag.RevenueList = Newtonsoft.Json.JsonConvert.SerializeObject(RevenueList);
 
             return View();
 
@@ -67,10 +75,10 @@ namespace foodfun.Areas.Admin.Controllers
         [LoginAuthorize(RoleList = "Admin,Staff")]
         public ActionResult ResetPassword()
         {
-            
-                ResetPasswordViewModel model = new ResetPasswordViewModel();
-                return View(model);
-            
+
+            ResetPasswordViewModel model = new ResetPasswordViewModel();
+            return View(model);
+
         }
 
         [HttpPost]
@@ -102,19 +110,25 @@ namespace foodfun.Areas.Admin.Controllers
         }
 
 
-        public List<string> GetYearMonthNameList()
+        public void GetTodayHourList()
         {
+            TimeSpan opentime = (TimeSpan)db.Company.Where(m => m.rowid == 1).Select(m => m.opentime).FirstOrDefault();
+            TimeSpan closetime = (TimeSpan)db.Company.Where(m => m.rowid == 1).Select(m => m.closetime).FirstOrDefault();
 
-
-            List<string> nameList = new List<string>();
-            List<string> monthList = new List<string>() { "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二" };
-            string str_name = "";
-            for (int i = 0; i < 12; i++)
+            int int_open = opentime.Hours;
+            int int_close = closetime.Hours;
+            DateTime TimeStart = DateTime.Today.AddHours(int_open);
+            DateTime TimeEnd = TimeStart.AddHours(1);
+            for (int i = int_open; i < int_close; i += 1)
             {
-                str_name = string.Format("{0}月", monthList[i]);
-                nameList.Add(str_name);
+                int iplus = i + 1;
+                int revenue = Order.GetRevenue(TimeStart, TimeEnd);
+                TimeStart = TimeStart.AddHours(1);
+                TimeEnd = TimeEnd.AddHours(1);
+                TimeList.Add($"{i} - {iplus}");
+                RevenueList.Add(revenue);
             }
-            return nameList;
+
         }
 
 

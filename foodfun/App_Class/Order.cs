@@ -71,11 +71,11 @@ public static class Order
     //取區間銷售金額
     public static int GetRevenue(DateTime start, DateTime end)
     {
-        DateTime dateTime = end.AddDays(1);
+
         int sum = 0;
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
-            var data_total = db.Orders.Where(m => m.SchedulOrderTime >= start && m.SchedulOrderTime < dateTime).Select(m => m.total).ToList();
+            var data_total = db.Orders.Where(m => m.SchedulOrderTime >= start && m.SchedulOrderTime < end).Select(m => m.total).ToList();
             sum = Convert.ToInt32(data_total.Sum());
         }
         return sum;
@@ -88,8 +88,8 @@ public static class Order
 
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
-            DateTime dateTime = end.AddDays(1);
-            var data_orderNo = db.Orders.Where(m => m.SchedulOrderTime >= start && m.SchedulOrderTime < dateTime).Select(m => m.order_no).ToList();
+
+            var data_orderNo = db.Orders.Where(m => m.SchedulOrderTime >= start && m.SchedulOrderTime < end).Select(m => m.order_no).ToList();
 
             foreach (var item in data_orderNo)
             {
@@ -106,14 +106,16 @@ public static class Order
     public static int GetNumOfCust(DateTime start, DateTime end)
     {
         int sum = 0;
-        DateTime dateTime = end.AddDays(1);
+   
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
-            var data = db.Orders.Where(m => m.SchedulOrderTime >= start && m.SchedulOrderTime < dateTime).ToList();
+            var data = db.Orders.Where(m => m.SchedulOrderTime >= start && m.SchedulOrderTime < end).ToList();
             sum = Convert.ToInt32(data.Count);
         }
         return sum;
     }
+
+
 
 
 
