@@ -8,8 +8,8 @@ using foodfun.Models;
 /// <summary>
 /// 訂單類別
 /// </summary>
-    public static class Order
-    {
+public static class Order
+{
 
     #region 公開屬性
 
@@ -17,13 +17,14 @@ using foodfun.Models;
     /// 是否有未結訂單
     /// </summary>
     public static bool IsNowOrder { get { return GetNowOrder(); } }
+    //今日銷售額
 
 
 
     #endregion
 
     #region 公用函數
-    public static List<OrdersViewModel> GetOrderList(bool isclosed) 
+    public static List<OrdersViewModel> GetOrderList(bool isclosed)
     {
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
@@ -48,7 +49,7 @@ using foodfun.Models;
                     orderDetails = db.OrdersDetails.Where(m => m.order_no == order_no).OrderBy(m => m.rowid).ToList(),
                     orderstatus_name = db.OrderStatus.Where(m => m.orderstatus_no == status_no).FirstOrDefault().orderstatus_name,
                     mealservice_name = db.MealService.Where(m => m.mealservice_no == meal_no).FirstOrDefault().mealservice_name,
-                    
+
                 });
             }
             return ordersViewModels;
@@ -56,31 +57,85 @@ using foodfun.Models;
     }
 
 
-    public static List<OrdersDetails> GetOrderDetails(string order_no) 
+    public static List<OrdersDetails> GetOrderDetails(string order_no)
     {
-        using (GoPASTAEntities db = new GoPASTAEntities()) 
+        using (GoPASTAEntities db = new GoPASTAEntities())
         {
             var detailList = db.OrdersDetails.Where(m => m.order_no == order_no).ToList();
             return detailList;
-        
+
         }
     }
+
+
+    //取區間銷售金額
+    public static int GetRevenue(DateTime start, DateTime end)
+    {
+        DateTime dateTime = end.AddDays(1);
+        int sum = 0;
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+            var data_total = db.Orders.Where(m => m.SchedulOrderTime >= start && m.SchedulOrderTime < dateTime).Select(m => m.total).ToList();
+            sum = Convert.ToInt32(data_total.Sum());
+        }
+        return sum;
+    }
+
+    //取區間銷售數量
+    public static int GetSaleItemNum(DateTime start, DateTime end)
+    {
+        int qty = 0;
+
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+            DateTime dateTime = end.AddDays(1);
+            var data_orderNo = db.Orders.Where(m => m.SchedulOrderTime >= start && m.SchedulOrderTime < dateTime).Select(m => m.order_no).ToList();
+
+            foreach (var item in data_orderNo)
+            {
+                var data_qty = db.OrdersDetails.Where(m => m.order_no == item).Select(m => m.qty).ToList();
+                int order_qty = (int)data_qty.Sum();
+                qty += order_qty;
+            }
+        }
+        return qty;
+    }
+
+
+    //取區間來客
+    public static int GetNumOfCust(DateTime start, DateTime end)
+    {
+        int sum = 0;
+        DateTime dateTime = end.AddDays(1);
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+            var data = db.Orders.Where(m => m.SchedulOrderTime >= start && m.SchedulOrderTime < dateTime).ToList();
+            sum = Convert.ToInt32(data.Count);
+        }
+        return sum;
+    }
+
+
+
+
+
 
     #endregion
 
     #region 私有函數
-    private static bool GetNowOrder() 
+    private static bool GetNowOrder()
     {
         bool now_order;
-        using (GoPASTAEntities db = new GoPASTAEntities()) 
+        using (GoPASTAEntities db = new GoPASTAEntities())
         {
             var data = db.Orders.Where(m => m.mno == UserAccount.UserNo && m.isclosed == false).ToList();
             int data_num = data.Count();
 
             now_order = data_num > 0 ? true : false;
         }
-            return now_order;
+        return now_order;
     }
+
 
     #endregion
 
