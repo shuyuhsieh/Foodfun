@@ -26,7 +26,7 @@ namespace foodfun.Areas.Admin.Controllers
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-
+                ViewBag.RoleDropdownList = Backend.RoleDropdownList();
                 Users model = new Users();
 
                 return View(model);
@@ -42,6 +42,7 @@ namespace foodfun.Areas.Admin.Controllers
 
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
+
                 db.Users.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -54,11 +55,7 @@ namespace foodfun.Areas.Admin.Controllers
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                //if (id == 0)
-                //{
-                //    Categorys new_model = new Categorys();
-                //    return View(new_model);
-                //}
+               
                 var models = db.Users.Where(m => m.mno == id).FirstOrDefault();
                 return View(models);
             }

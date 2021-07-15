@@ -64,7 +64,7 @@ namespace foodfun.Areas.Admin.Controllers
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                ViewBag.ParentIdDropdownList = Backend.ParentIdDropdownList();
+              //  ViewBag.ParentIdDropdownList = Backend.ParentIdDropdownList();
                 if (id == 0)
                 {
 

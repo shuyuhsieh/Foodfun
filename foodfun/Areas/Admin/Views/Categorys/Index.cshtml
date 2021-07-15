@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "基本資料管理 / 商品分類設定";
+    ViewBag.Title = "商品分類設定";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     int int_pid = int.Parse(Session["CategoryID"].ToString());
     string str_pids = Session["ParentID"].ToString();
@@ -15,6 +15,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
+                        <strong class="card-title"> @ViewBag.Title</strong>
 
                         @if (int_pid > 0)
                         {
@@ -59,7 +60,8 @@
                                     <th>
                                         <a class="popup" title="新增記錄" href="/Admin/Categorys/Create/"><i class="fa fa-plus-square-o fa-2x"></i></a>
                                     </th>
-                                    <th>編號</th>
+                                    @*<th>主類別</th>*@
+                                    <th>類別編號</th>
                                     <th>名稱</th>
                                 </tr>
                             </thead>
@@ -107,6 +109,7 @@
                         return '<a   title="修改記錄" href="/Admin/Categorys/Edit/' + data + '"><i class="fa fa-pencil-square-o fa-2x"></i></a><a id ="' + data + ' " class="delete_cate mx-3" title="刪除記錄" href="#"><i class="fa fa-trash fa-2x"></i></a><a title="子分類明細" href="/Admin/Categorys/Index/' + data + '"><i class="fa fa-list fa-2x"></i></a>';
                     }
                 },
+                /*{ "data": "parentid", },*/
                 { "data": "category_no", },
                 { "data": "category_name" }
             ],
@@ -124,8 +127,8 @@
                     success: function (status) { if (status) { oTable.ajax.reload(); } }
                 })
             }
-     
-            
+
+
 
         });
 

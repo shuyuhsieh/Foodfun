@@ -18,9 +18,9 @@ namespace foodfun.Models
             public int rowid { get; set; }
 
 
-            [Required(ErrorMessage = "產品屬性編號不可空白")]
+            [Required(ErrorMessage = "產品屬性不可空白")]
             [DisplayFormat(ConvertEmptyStringToNull = false, HtmlEncode = true, NullDisplayText = "請輸入產品屬性編號")]
-            [Display(Name = "產品屬性編號")]
+            [Display(Name = "產品屬性")]
 
             public string property_no { get; set; }
 
