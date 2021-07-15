@@ -71,7 +71,7 @@
                                     <a href="#"><span class="flaticon-user"> @UserAccount.UserName</span></a>
                                     <ul class="submenu">
                                         <li>
-                                            <a class="fas fa-sign-out-alt" href="/User/Login">系統登出</a>
+                                            <a class="fas fa-sign-out-alt" href="@Url.Action("Login","User",new {area="" })">系統登出</a>
                                         </li>
                                         <li>@Html.ActionLink("後台管理", "Index", "Admin", new { area = "Admin" }, new { @class = "fas fa-cog" })</li>
                                     </ul>
