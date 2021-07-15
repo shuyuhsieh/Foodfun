@@ -38,9 +38,8 @@ namespace foodfun.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Products> Products { get; set; }
-        public virtual DbSet<Concepts> Concepts { get; set; }
-        public virtual DbSet<Profiles> Profiles { get; set; }
-        public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<ProgramList> ProgramList { get; set; }
+        public virtual DbSet<About> About { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
     }
 }

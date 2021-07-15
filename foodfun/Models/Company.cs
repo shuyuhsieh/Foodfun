@@ -15,7 +15,6 @@ namespace foodfun.Models
     public partial class Company
     {
         public int rowid { get; set; }
-        public Nullable<int> company_id { get; set; }
         public string brandname { get; set; }
         public string tel { get; set; }
         public string fax { get; set; }
@@ -25,5 +24,6 @@ namespace foodfun.Models
         public string public_holiday { get; set; }
         public string logoimage_path { get; set; }
         public string indeximage_path { get; set; }
+        public string description { get; set; }
     }
 }

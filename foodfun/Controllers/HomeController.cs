@@ -24,7 +24,10 @@ namespace foodfun.Controllers
         public ActionResult About()
         {
 
-            return View();
+            AboutViewModel model = new AboutViewModel();
+            model.Company = db.Company.OrderBy(m => m.rowid).FirstOrDefault();
+            model.About = db.About.OrderBy(m => m.sortid).ToList();
+            return View(model);
         }
 
         public ActionResult Contact()

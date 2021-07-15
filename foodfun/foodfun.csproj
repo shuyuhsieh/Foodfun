@@ -169,8 +169,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AboutController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategorysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderBackController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\MemberBackController.cs" />
@@ -191,6 +193,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\CusHub.cs" />
+    <Compile Include="Models\About.cs">
+      <DependentUpon>GoPASTA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Carts.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
@@ -198,9 +203,6 @@
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Concepts.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Carts\CartTemp.cs" />
@@ -222,7 +224,9 @@
     <Compile Include="Models\MealService.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaData\About.cs" />
     <Compile Include="Models\MetaData\Categorys.cs" />
+    <Compile Include="Models\MetaData\Company.cs" />
     <Compile Include="Models\MetaData\Orders.cs" />
     <Compile Include="Models\MetaData\Payments.cs" />
     <Compile Include="Models\MetaData\Products.cs" />
@@ -248,9 +252,6 @@
     <Compile Include="Models\ProductsProperty.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Profiles.cs">
-      <DependentUpon>GoPASTA.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ProgramList.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
@@ -266,6 +267,7 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\AboutViewModel.cs" />
     <Compile Include="Models\ViewModel\CartViewModel.cs" />
     <Compile Include="Models\ViewModel\ForgetPasswordViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
@@ -425,6 +427,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\about\at1.jpg" />
+    <Content Include="img\about\at2.jpg" />
+    <Content Include="img\about\at3.jpg" />
+    <Content Include="img\about\at4.jpg" />
+    <Content Include="img\about\val1.jpg" />
+    <Content Include="img\about\val2.jpg" />
+    <Content Include="img\about\val3.jpg" />
+    <Content Include="img\about\val4.jpg" />
     <Content Include="img\drink\billy-kwok-vfiA7rRtjWo-unsplash.jpg" />
     <Content Include="img\drink\danielle-macinnes-IuLgi9PWETU-unsplash.jpg" />
     <Content Include="img\drink\demi-deherrera-L-sm1B4L1Ns-unsplash.jpg" />
@@ -516,6 +526,10 @@
     <Content Include="Areas\Admin\Views\OrderBack\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RoleAuthorized\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RoleAuthorized\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Company\Index.cshtml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -949,6 +963,8 @@
     <Folder Include="Areas\Admin\Views\AdminHome\" />
     <Folder Include="Areas\Admin\Views\Users\" />
     <Folder Include="Areas\Staff\Data\" />
+    <Folder Include="img\about\at\" />
+    <Folder Include="img\about\val\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

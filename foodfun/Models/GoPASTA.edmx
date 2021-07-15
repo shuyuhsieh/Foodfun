@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GoPASTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyid" Type="int" />
+          <Property Name="sortid" Type="int" />
+          <Property Name="corevalue_title" Type="nchar" MaxLength="50" />
+          <Property Name="corevalue_descpt" Type="nchar" MaxLength="250" />
+          <Property Name="about_path" Type="nchar" MaxLength="50" />
+          <Property Name="corevalue_path" Type="nchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Carts">
           <Key>
             <PropertyRef Name="rowid" />
@@ -32,7 +44,6 @@
             <PropertyRef Name="rowid" />
           </Key>
           <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="company_id" Type="int" />
           <Property Name="brandname" Type="nvarchar" MaxLength="50" />
           <Property Name="tel" Type="nvarchar" MaxLength="50" />
           <Property Name="fax" Type="nvarchar" MaxLength="50" />
@@ -42,15 +53,7 @@
           <Property Name="public_holiday" Type="nvarchar" MaxLength="50" />
           <Property Name="logoimage_path" Type="nvarchar" MaxLength="50" />
           <Property Name="indeximage_path" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Concepts">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="int" Nullable="false" />
-          <Property Name="corevalue_title" Type="nvarchar" MaxLength="50" />
-          <Property Name="corevalue_descpt" Type="nvarchar" MaxLength="250" />
-          <Property Name="corevalue_path" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="MealService">
           <Key>
@@ -74,7 +77,7 @@
           <Property Name="total" Type="decimal" Precision="18" Scale="4" />
           <Property Name="orderstatus_no" Type="nvarchar" MaxLength="50" />
           <Property Name="mealservice_no" Type="nvarchar" MaxLength="50" />
-          <Property Name="SchedulOrderTime" Type="datetime" />
+          <Property Name="SchedulOrderTime" Type="datetime" Nullable="false" />
           <Property Name="table_no" Type="nvarchar" MaxLength="50" />
           <Property Name="paid_no" Type="nvarchar" MaxLength="50" />
           <Property Name="receive_name" Type="nvarchar" MaxLength="50" />
@@ -145,14 +148,6 @@
           <Property Name="product_no" Type="nvarchar" MaxLength="50" />
           <Property Name="Property_no" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Profiles">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="company_profile" Type="nvarchar" MaxLength="250" />
-          <Property Name="profileimage_path" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="ProgramList">
           <Key>
             <PropertyRef Name="rowid" />
@@ -213,10 +208,10 @@
           <Property Name="isvalidate" Type="bit" />
         </EntityType>
         <EntityContainer Name="GoPASTAModelStoreContainer">
+          <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Concepts" EntityType="Self.Concepts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MealService" EntityType="Self.MealService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrdersDetails" EntityType="Self.OrdersDetails" Schema="dbo" store:Type="Tables" />
@@ -224,7 +219,6 @@
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsProperty" EntityType="Self.ProductsProperty" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgramList" EntityType="Self.ProgramList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Propertys" EntityType="Self.Propertys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
@@ -365,10 +359,9 @@
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="Orders" EntityType="GoPASTAModel.Orders" />
           <EntitySet Name="Products" EntityType="GoPASTAModel.Products" />
-          <EntitySet Name="Concepts" EntityType="GoPASTAModel.Concepts" />
-          <EntitySet Name="Profiles" EntityType="GoPASTAModel.Profiles" />
-          <EntitySet Name="Company" EntityType="GoPASTAModel.Company" />
           <EntitySet Name="ProgramList" EntityType="GoPASTAModel.ProgramList" />
+          <EntitySet Name="About" EntityType="GoPASTAModel.About" />
+          <EntitySet Name="Company" EntityType="GoPASTAModel.Company" />
         </EntityContainer>
         <EntityType Name="Orders">
           <Key>
@@ -383,7 +376,7 @@
           <Property Name="total" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="orderstatus_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="mealservice_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SchedulOrderTime" Type="DateTime" Precision="3" />
+          <Property Name="SchedulOrderTime" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="table_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="paid_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="receive_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -416,39 +409,6 @@
           <Property Name="ishot" Type="Boolean" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Concepts">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" />
-          <Property Name="corevalue_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="corevalue_descpt" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="corevalue_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Profiles">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="company_profile" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="profileimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="company_id" Type="Int32" />
-          <Property Name="brandname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="opentime" Type="Time" Precision="0" />
-          <Property Name="closetime" Type="Time" Precision="0" />
-          <Property Name="public_holiday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="logoimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="indeximage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="ProgramList">
           <Key>
             <PropertyRef Name="rowid" />
@@ -460,6 +420,34 @@
           <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyid" Type="Int32" />
+          <Property Name="sortid" Type="Int32" />
+          <Property Name="corevalue_title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="corevalue_descpt" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="about_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="corevalue_path" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brandname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="opentime" Type="Time" Precision="0" />
+          <Property Name="closetime" Type="Time" Precision="0" />
+          <Property Name="public_holiday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="logoimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="indeximage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -642,42 +630,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Concepts">
-            <EntityTypeMapping TypeName="GoPASTAModel.Concepts">
-              <MappingFragment StoreEntitySet="Concepts">
-                <ScalarProperty Name="corevalue_path" ColumnName="corevalue_path" />
-                <ScalarProperty Name="corevalue_descpt" ColumnName="corevalue_descpt" />
-                <ScalarProperty Name="corevalue_title" ColumnName="corevalue_title" />
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Profiles">
-            <EntityTypeMapping TypeName="GoPASTAModel.Profiles">
-              <MappingFragment StoreEntitySet="Profiles">
-                <ScalarProperty Name="profileimage_path" ColumnName="profileimage_path" />
-                <ScalarProperty Name="company_profile" ColumnName="company_profile" />
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Company">
-            <EntityTypeMapping TypeName="GoPASTAModel.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="indeximage_path" ColumnName="indeximage_path" />
-                <ScalarProperty Name="logoimage_path" ColumnName="logoimage_path" />
-                <ScalarProperty Name="public_holiday" ColumnName="public_holiday" />
-                <ScalarProperty Name="closetime" ColumnName="closetime" />
-                <ScalarProperty Name="opentime" ColumnName="opentime" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="fax" ColumnName="fax" />
-                <ScalarProperty Name="tel" ColumnName="tel" />
-                <ScalarProperty Name="brandname" ColumnName="brandname" />
-                <ScalarProperty Name="company_id" ColumnName="company_id" />
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProgramList">
             <EntityTypeMapping TypeName="GoPASTAModel.ProgramList">
               <MappingFragment StoreEntitySet="ProgramList">
@@ -687,6 +639,36 @@
                 <ScalarProperty Name="pro_no" ColumnName="pro_no" />
                 <ScalarProperty Name="filter_role" ColumnName="filter_role" />
                 <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="About">
+            <EntityTypeMapping TypeName="GoPASTAModel.About">
+              <MappingFragment StoreEntitySet="About">
+                <ScalarProperty Name="corevalue_path" ColumnName="corevalue_path" />
+                <ScalarProperty Name="about_path" ColumnName="about_path" />
+                <ScalarProperty Name="corevalue_descpt" ColumnName="corevalue_descpt" />
+                <ScalarProperty Name="corevalue_title" ColumnName="corevalue_title" />
+                <ScalarProperty Name="sortid" ColumnName="sortid" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="GoPASTAModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="indeximage_path" ColumnName="indeximage_path" />
+                <ScalarProperty Name="logoimage_path" ColumnName="logoimage_path" />
+                <ScalarProperty Name="public_holiday" ColumnName="public_holiday" />
+                <ScalarProperty Name="closetime" ColumnName="closetime" />
+                <ScalarProperty Name="opentime" ColumnName="opentime" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="brandname" ColumnName="brandname" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
