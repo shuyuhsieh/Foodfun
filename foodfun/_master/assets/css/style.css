@@ -2808,6 +2808,10 @@ input:hover, input:focus {
     color: #ff2020
 }
 
+main {
+    min-height: 70vh
+}
+
 .header-area .main-header {
     padding: 0px 120px
 }
@@ -3197,9 +3201,16 @@ input:hover, input:focus {
 
 
 
+.slider-height2 {
+    background-image: url(/img/Contacts.jpg);
+    min-height: 500px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 @media (max-width: 575px) {
     .slider-height2 {
-        min-height: 260px
+        min-height: 260px;
     }
 }
 
@@ -11489,7 +11500,7 @@ input:focus {
 
 .aboutCont .about-pro {
     height: auto;
-    background-color: lightsalmon;
+
     padding-top: 50px;
     padding-left: 20px;
     padding-right: 20px;
@@ -11497,6 +11508,20 @@ input:focus {
 
 .aboutCont .text-muted {
     color: lightsalmon;
+}
+.aboutCont .carousel-inner img {
+    opacity: 0.5;
+    z-index: -1
+}
+.aboutCont .carousel h2 {
+    position: absolute;
+    left: 45%;
+    top: 250px;
+    font-size: 70px;
+    font-weight: 700;
+    text-transform: capitalize;
+    z-index: 1 ;
+    text-shadow:5px 5px 5px #ffffff
 }
 
 .aboutCont .ac1 {

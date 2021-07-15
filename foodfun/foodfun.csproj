@@ -435,6 +435,7 @@
     <Content Include="img\about\val2.jpg" />
     <Content Include="img\about\val3.jpg" />
     <Content Include="img\about\val4.jpg" />
+    <Content Include="img\contacts.jpg" />
     <Content Include="img\drink\billy-kwok-vfiA7rRtjWo-unsplash.jpg" />
     <Content Include="img\drink\danielle-macinnes-IuLgi9PWETU-unsplash.jpg" />
     <Content Include="img\drink\demi-deherrera-L-sm1B4L1Ns-unsplash.jpg" />
@@ -443,6 +444,13 @@
     <Content Include="img\drink\nathan-dumlao-nBJHO6wmRWw-unsplash.jpg" />
     <Content Include="img\drink\olivier-guillard-AjG1BkDH4Zs-unsplash.jpg" />
     <Content Include="img\index.jpg" />
+    <Content Include="img\index\Gallery001.jpg" />
+    <Content Include="img\index\Gallery002.jpg" />
+    <Content Include="img\index\Gallery003.jpg" />
+    <Content Include="img\index\Gallery004.jpg" />
+    <Content Include="img\index\NewProduct001.jpg" />
+    <Content Include="img\index\NewProduct002.jpg" />
+    <Content Include="img\index\NewProduct003.jpg" />
     <Content Include="img\logo.png" />
     <Content Include="img\logo2.png" />
     <Content Include="img\logoicon.png" />
@@ -965,6 +973,7 @@
     <Folder Include="Areas\Staff\Data\" />
     <Folder Include="img\about\at\" />
     <Folder Include="img\about\val\" />
+    <Folder Include="img\其他\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

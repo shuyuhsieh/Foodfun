@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "About Us";
+    ViewBag.Title = "關於我們";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2 style="margin-left:100px;">@ViewBag.Title</h2>
-@* <h3>@ViewBag.Message</h3>*@
+
+
 
 <div class="aboutCont">
 
@@ -11,7 +11,8 @@
         <div class="col-12 banner ">
 
             <div class="carousel silde" data-ride="carousel" style="">
-                <div class="carousel-inner " style="height:400px;">
+                <h2>@ViewBag.Title</h2>
+                <div class="carousel-inner " style="height:500px;">
                     @foreach (var item in Model.About)
                     {
                         if (item.sortid == 1)
@@ -29,71 +30,48 @@
         </div>
     </div>
     @*=========公司簡介=========*@
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8 ">
+    <div class="row my-2">
+
+        <div class="col-xl-8 offset-xl-2 col-12">
             <div class="about-pro">
                 <h1>    我們的初衷 ~ </h1>
                 <p>@Html.Raw(@Model.Company.description)</p>
 
             </div>
         </div>
-        <div class="col-2"></div>
+
     </div>
     @*=========公司理念 =========*@
 
-    <div class="row " style="margin-left:10px; margin-top:20px;">
-        <div class="col-2"></div>
-        <div class="col-10">
+    <div class="row my-2 " style="margin-left:10px; margin-top:20px;">
+        <div class="col-8 offset-2 col-12">
             <h1>    我們的理念 ~ </h1>
         </div>
+        <div class="col-xl-8 offset-xl-2 col-12">
+            <div class="row">
 
-        @foreach (var item in Model.About)
-        {
-            if (@item.sortid == 1)
-            {
-                <div class="col-2"></div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 ac1">
-                    <div class="row ">
-                        <div class="col-12 col-md-6">
-                            <h1>@item.sortid </h1>
-                            <h2 class="text-muted">@item.corevalue_title</h2>
-                            <p class="m-1 pl-1 text-success">@item.corevalue_descpt</p>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <img src="@Url.Content(item.corevalue_path)" alt="" class="img-thumbnail ">
-                        </div>
-                    </div>
-                </div>
+                @foreach (var item in Model.About)
+                {
 
-            }
-            else
-            {
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 ac1">
-                    <div class="row ">
-                        <div class="col-12 col-md-6">
-                            <h1>@item.sortid </h1>
-                            <h2 class="text-muted">@item.corevalue_title</h2>
-                            <p class="m-1 pl-1 text-success">@item.corevalue_descpt</p>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <img src="@Url.Content(item.corevalue_path)" alt="" class="img-thumbnail ">
+                    <div class="col-6 my-3">
+                        <div class="row ">
+                            <div class="col-12 col-md-6">
+                                <h1>@item.sortid </h1>
+                                <h2 class="text-muted">@item.corevalue_title</h2>
+                                <p class="m-1 pl-1 text-success">@item.corevalue_descpt</p>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <img src="@Url.Content(item.corevalue_path)" alt="" class="img-thumbnail ">
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-        }
-    </div>
 
-
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-10">
-            <h5>公司電話：@Model.Company.tel</h5><br />
-            <h5>公司地址：@Model.Company.address</h5>
-
+                }
+            </div>
         </div>
     </div>
+</div>
+
 
 
 
