@@ -153,8 +153,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AboutController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategorysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\MemberBackController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentsController.cs" />
@@ -205,7 +207,9 @@
     <Compile Include="Models\MealService.cs">
       <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaData\About.cs" />
     <Compile Include="Models\MetaData\Categorys.cs" />
+    <Compile Include="Models\MetaData\Company.cs" />
     <Compile Include="Models\MetaData\Orders.cs" />
     <Compile Include="Models\MetaData\Products.cs" />
     <Compile Include="Models\MetaData\ProgramList.cs" />
@@ -245,6 +249,7 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\AboutBackViewModel.cs" />
     <Compile Include="Models\ViewModel\AboutViewModel.cs" />
     <Compile Include="Models\ViewModel\CartViewModel.cs" />
     <Compile Include="Models\ViewModel\ForgetPasswordViewModel.cs" />
@@ -488,6 +493,10 @@
     <Content Include="Models\GoPASTAModel.edmx.diagram">
       <DependentUpon>GoPASTAModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Company\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Edit.cshtml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
