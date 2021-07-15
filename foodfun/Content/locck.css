@@ -1,0 +1,51 @@
+
+
+.clock {
+
+    padding: 0px;
+    color: #666;
+}
+
+    .clock #Date {
+        font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .clock ul {
+
+
+        padding: 0px;
+        list-style: none;
+        text-align: center;
+    }
+
+        .clock ul li {
+            display: inline;
+            font-size: 5em;
+            text-align: center;
+            font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+        }
+
+    .clock #point {
+        position: relative;
+        -moz-animation: mymove 1s ease infinite;
+        -webkit-animation: mymove 1s ease infinite;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+@-webkit-keyframes mymove {
+    0% {
+        opacity: 1.0;
+    }
+
+    50% {
+        opacity: 0;
+        text-shadow: none;
+    }
+
+    100% {
+        opacity: 1.0;
+    }
+}

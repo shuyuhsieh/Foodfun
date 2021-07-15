@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<link href="~/Content/weatherstyle.css " rel="stylesheet" />
+<link href="~/Content/locck.css" rel="stylesheet" />
 
 <!--  Traffic  -->
 <div class="row">
@@ -10,22 +12,45 @@
         <div class="card">
 
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="card-body">
                         <!-- <canvas id="TrafficChart"></canvas>   -->
-                        <div>
-                            <h3>2021/01/01</h3>
-                            <p>星期三</p>
+                        <div class="clock pt-md-5">
+                            <div id="Date">Monday 14 January 2013</div>
 
+                            <ul>
+                                <li id="hours">10</li>
+                                <li id="point">:</li>
+                                <li id="min">13</li>
+
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <div class="card-body">
-                        <h4>天氣 </h4>
+                        <div class="weather_card">
+                            <div class="search">
+                                <input type="text" class="search-bar" placeholder="Search">
+                                <button>
+                                    <i class="fa fa-search" aria-hidden="true" ></i>
+                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em"
+                                         width="1.5em" >
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="weather loading mx-5 mx-md-1">
+                                <h2 class="city">Weather in Denver</h2>
+                                <h1 class="temp">51°C</h1>
+                                <div class="flex">
+                                    <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
+                                    <div class="description">Cloudy</div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div> <!-- /.row -->
 
 
@@ -70,7 +95,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-lg-3 col-md-6">
         <div class="card">
             <div class="card-body">
@@ -132,3 +157,112 @@
         </div>
     </div><!-- /# column -->
 </div>
+
+
+<div class="weather_card">
+    <div class="search">
+        <input type="text" class="search-bar" placeholder="Search">
+        <button>
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em"
+                 width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z">
+                </path>
+            </svg>
+        </button>
+    </div>
+    <div class="weather loading">
+        <h2 class="city">Weather in Denver</h2>
+        <h1 class="temp">51°C</h1>
+        <div class="flex">
+            <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
+            <div class="description">Cloudy</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        // Create two variable with the names of the months and days in an array
+        var monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+        var dayNames = ["星期天", "星期一", "星期二", "星期四", "星期五", "星期六", "星期天"]
+
+        // Create a newDate() object
+        var newDate = new Date();
+        // Extract the current date from Date object
+        newDate.setDate(newDate.getDate());
+        // Output the day, date, month and year
+        $('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getFullYear() + " " + monthNames[newDate.getMonth()] + " " + newDate.getDate());
+
+
+
+        setInterval(function () {
+            // Create a newDate() object and extract the minutes of the current time on the visitor's
+            var minutes = new Date().getMinutes();
+            // Add a leading zero to the minutes value
+            $("#min").html((minutes < 10 ? "0" : "") + minutes);
+        }, 1000);
+
+        setInterval(function () {
+            // Create a newDate() object and extract the hours of the current time on the visitor's
+            var hours = new Date().getHours();
+            // Add a leading zero to the hours value
+            $("#hours").html((hours < 10 ? "0" : "") + hours);
+        }, 1000);
+
+    });
+
+
+    let weather = {
+        apiKey: "546c0880b37dc086a3017c3aec5175f5",
+        fetchWeather: function (city) {
+            fetch(
+                "https://api.openweathermap.org/data/2.5/weather?q=" +
+                city +
+                "&units=metric&appid=" +
+                this.apiKey
+            )
+                .then((response) => {
+                    if (!response.ok) {
+                        alert("No weather found.");
+                        throw new Error("No weather found.");
+                    }
+                    return response.json();
+                })
+                .then((data) => this.displayWeather(data));
+        },
+        displayWeather: function (data) {
+            const { name } = data;
+            const { icon, description } = data.weather[0];
+            const { temp, humidity } = data.main;
+            const { speed } = data.wind;
+            document.querySelector(".city").innerText = "Weather in " + name;
+            document.querySelector(".icon").src =
+                "https://openweathermap.org/img/wn/" + icon + ".png";
+            document.querySelector(".description").innerText = description;
+            document.querySelector(".temp").innerText = temp + "°C";
+
+            document.querySelector(".weather").classList.remove("loading");
+            document.body.style.backgroundImage =
+                "url('https://source.unsplash.com/1600x900/?" + name + "')";
+        },
+        search: function () {
+            this.fetchWeather(document.querySelector(".search-bar").value);
+        },
+    };
+
+    document.querySelector(".search button").addEventListener("click", function () {
+        weather.search();
+    });
+
+    document
+        .querySelector(".search-bar")
+        .addEventListener("keyup", function (event) {
+            if (event.key == "Enter") {
+                weather.search();
+            }
+        });
+
+    weather.fetchWeather("Taipei");
+</script>
