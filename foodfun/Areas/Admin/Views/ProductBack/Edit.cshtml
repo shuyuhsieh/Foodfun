@@ -5,16 +5,15 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>產品修改</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Products</h4>
-        <hr />
+        <hr>
+        <strong class="card-title"> @ViewBag.Title</strong>
+        <hr>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.product_no)
 
@@ -38,7 +37,7 @@
             @Html.LabelFor(model => model.category_no, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.category_no, (IEnumerable<SelectListItem>)ViewBag.CtgryDropdownList, new { @class = "form-control chosen-select" })
-                
+
                 @*@Html.EditorFor(model => model.category_no, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.category_no, "", new { @class = "text-danger" })
             </div>
@@ -61,12 +60,12 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.discount_price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.discount_price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.discount_price, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.discount_price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.discount_price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.discount_price, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.stock_qty, htmlAttributes: new { @class = "control-label col-md-2" })

@@ -1,20 +1,19 @@
 ﻿@model foodfun.Models.Propertys
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "新增商品屬性";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>新增商品屬性</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Propertys</h4>
-        <hr />
+        <hr>
+        <strong class="card-title"> @ViewBag.Title</strong>
+        <hr>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.property_no, htmlAttributes: new { @class = "control-label col-md-2" })

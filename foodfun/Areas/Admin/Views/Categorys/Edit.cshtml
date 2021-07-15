@@ -1,11 +1,9 @@
 ﻿@model foodfun.Models.Categorys
 
 @{
-    ViewBag.Title = "資料修改";
+    ViewBag.Title = "類別資料修改";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<h2>類別資料修改</h2>
 
 
 @using (Html.BeginForm())
@@ -13,16 +11,20 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-      
-        <hr />
+        <hr>
+        <strong class="card-title"> @ViewBag.Title</strong>
+        <hr>
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.rowid)
+        @* @Html.HiddenFor(model => model.parentid)*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.parentid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.category_name, (IEnumerable<SelectListItem>)ViewBag.ParentIdDropdownList, new { @class = "form-control chosen-select" })
-                @*  @Html.EditorFor(model => model.parentid, new { htmlAttributes = new { @class = "form-control" } })*@
+                @*@Html.DropDownListFor(model => model.parentid, (IEnumerable<SelectListItem>)ViewBag.ParentIdDropdownList, new { @class = "form-control chosen-select" ,@readonly = "readonly" })*@
+                @* @Html.DropDownListFor(model => model.parentid, (IEnumerable<SelectListItem>)ViewBag.ParentIdDropdownList, new { @class = "form-control", @readonly = "readonly" })*@
+                @Html.EditorFor(model => model.parentid, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.parentid, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,7 +51,7 @@
                 @Html.ActionLink("返回", "Index", "Categorys", null, new { @class = "btn btn-info" })
             </div>
         </div>
-     </div>
+    </div>
 }
 
 

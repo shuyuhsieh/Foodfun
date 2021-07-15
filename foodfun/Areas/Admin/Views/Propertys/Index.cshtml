@@ -3,11 +3,11 @@
 @model IEnumerable<foodfun.Models.Propertys>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "屬性設定";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>屬性設定</h2>
+
 
 
 
@@ -19,8 +19,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
+                            <strong class="card-title"> @ViewBag.Title</strong>
 
-                          
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
