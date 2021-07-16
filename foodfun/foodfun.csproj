@@ -435,14 +435,8 @@
     <Content Include="img\about\val2.jpg" />
     <Content Include="img\about\val3.jpg" />
     <Content Include="img\about\val4.jpg" />
-    <Content Include="img\contacts.jpg" />
-    <Content Include="img\drink\billy-kwok-vfiA7rRtjWo-unsplash.jpg" />
     <Content Include="img\drink\danielle-macinnes-IuLgi9PWETU-unsplash.jpg" />
     <Content Include="img\drink\demi-deherrera-L-sm1B4L1Ns-unsplash.jpg" />
-    <Content Include="img\drink\food-photographer-jennifer-pallian-sSnCZlEWN5E-unsplash.jpg" />
-    <Content Include="img\drink\mockup-graphics-DJyffTDrXQI-unsplash.jpg" />
-    <Content Include="img\drink\nathan-dumlao-nBJHO6wmRWw-unsplash.jpg" />
-    <Content Include="img\drink\olivier-guillard-AjG1BkDH4Zs-unsplash.jpg" />
     <Content Include="img\index.jpg" />
     <Content Include="img\index\Gallery001.jpg" />
     <Content Include="img\index\Gallery002.jpg" />
@@ -455,17 +449,31 @@
     <Content Include="img\logo2.png" />
     <Content Include="img\logoicon.png" />
     <Content Include="img\OrderDiolog.jpg" />
-    <Content Include="img\pasta\003.jpg" />
-    <Content Include="img\pasta\004.jpg" />
+    <Content Include="img\other\003.jpg" />
+    <Content Include="img\other\004.jpg" />
+    <Content Include="img\other\011.jpg" />
+    <Content Include="img\pasta\001.jpg" />
     <Content Include="img\pasta\005.jpg" />
     <Content Include="img\pasta\010.jpg" />
-    <Content Include="img\pasta\011.jpg" />
-    <Content Include="img\pasta\ehud-neuhaus-ylLAdEnKV2k-unsplash.jpg" />
+    <Content Include="img\pasta\A01022.jpg" />
+    <Content Include="img\pasta\B020001.jpg" />
+    <Content Include="img\pasta\B020002.jpg" />
+    <Content Include="img\pasta\pexels-chait-goli-1797171 %281%29.jpg" />
+    <Content Include="img\pasta\pexels-jane-d-769969.jpg" />
+    <Content Include="img\pasta\pexels-jess-vide-5507643.jpg" />
+    <Content Include="img\pasta\pexels-jonathan-borba-3622477 %281%29.jpg" />
+    <Content Include="img\pasta\pexels-klaus-nielsen-6287555.jpg" />
+    <Content Include="img\pasta\pexels-regina-ferraz-4748540.jpg" />
+    <Content Include="img\pasta\pexels-sascha-5807019 %281%29.jpg" />
+    <Content Include="img\pasta\pexels-valeria-boltneva-1893555 %281%29.jpg" />
     <Content Include="img\pasta\SS.jpg" />
     <Content Include="img\product\A01\A010001.jpg" />
     <Content Include="img\product\A01\A010002.jpg" />
     <Content Include="img\product\A02\A020001.jpg" />
     <Content Include="img\product\A02\A020002.jpg" />
+    <Content Include="img\product\A03\A03\A030001.jpg" />
+    <Content Include="img\product\A04\A04\A040003.jpg" />
+    <Content Include="img\product\A06\A06\A030001.jpg" />
     <Content Include="img\product\B01\B010001.jpg" />
     <Content Include="img\product\B01\B010002.jpg" />
     <Content Include="img\product\B01\B010003.jpg" />
@@ -473,6 +481,7 @@
     <Content Include="img\product\B02\B020002.jpg" />
     <Content Include="img\product\C01\C010001.jpg" />
     <Content Include="img\product\C01\C010002.jpg" />
+    <Content Include="img\contacts.jpg" />
     <Content Include="Models\GoPASTA.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>GoPASTA.edmx</DependentUpon>
@@ -971,9 +980,8 @@
     <Folder Include="Areas\Admin\Views\AdminHome\" />
     <Folder Include="Areas\Admin\Views\Users\" />
     <Folder Include="Areas\Staff\Data\" />
-    <Folder Include="img\about\at\" />
-    <Folder Include="img\about\val\" />
-    <Folder Include="img\其他\" />
+    <Folder Include="img\product\D02\D02\" />
+    <Folder Include="img\product\E01\E01\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
