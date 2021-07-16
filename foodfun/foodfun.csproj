@@ -365,6 +365,7 @@
     <Content Include="AdminBack\ui-tabs.html" />
     <Content Include="AdminBack\ui-typgraphy.html" />
     <Content Include="AdminBack\widgets.html" />
+    <Content Include="App_Data\GoPASTA.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -980,7 +981,6 @@
     <Content Include="Views\CheckOrder\GetNewOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\AdminHome\" />
     <Folder Include="Areas\Admin\Views\Users\" />
