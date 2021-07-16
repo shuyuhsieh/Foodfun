@@ -21,7 +21,7 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.sortid, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             @Html.EditorFor(model => model.sortid, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.sortid, "", new { @class = "text-danger" })
         </div>
@@ -29,7 +29,7 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.corevalue_title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             @Html.EditorFor(model => model.corevalue_title, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.corevalue_title, "", new { @class = "text-danger" })
         </div>
@@ -37,7 +37,7 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.corevalue_descpt, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             @Html.EditorFor(model => model.corevalue_descpt, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.corevalue_descpt, "", new { @class = "text-danger" })
         </div>

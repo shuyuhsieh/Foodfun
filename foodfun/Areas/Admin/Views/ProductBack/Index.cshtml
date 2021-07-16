@@ -6,90 +6,90 @@
 }
 
 
-        <div class="row">
+<div class="row">
 
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                       
-                        <div>  
-                         
-                                <b>
-                                    <strong class="card-title">
-                                        @ViewBag.Title
-                                    </strong>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
 
-                                </b>                         
-                        <hr />
+                <div>
 
-                    </div>
-                    <div class="card-body">
-                        <table style=" width: 100%" id="DatatableList" class="table table-striped table-bordered">
-                            <thead>
+                    <b>
+                        <strong class="card-title">
+                            @ViewBag.Title
+                        </strong>
+
+                    </b>
+                    <hr />
+
+                </div>
+                <div class="card-body">
+                    <table style=" width: 100%" id="DatatableList" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th> @Html.DisplayNameFor(model => model.products.product_no)</th>
+                                <th> @Html.DisplayNameFor(model => model.category_name)</th>
+                                <th> @Html.DisplayNameFor(model => model.products.product_name)</th>
+                                <th> @Html.DisplayNameFor(model => model.products.price_avgcost)</th>
+                                <th> @Html.DisplayNameFor(model => model.products.price_sale)</th>
+                                <th> @Html.DisplayNameFor(model => model.products.stock_qty)</th>
+                                <th> @Html.DisplayNameFor(model => model.products.image_path)</th>
+                                <th> @Html.ActionLink("新增記錄", "Create", "ProductBack", null, new { @class = "btn btn-primary" })</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @foreach (var item in Model)
+                            {
                                 <tr>
-                                    <th> @Html.DisplayNameFor(model => model.products.product_no)</th>
-                                    <th> @Html.DisplayNameFor(model => model.category_name)</th>
-                                    <th> @Html.DisplayNameFor(model => model.products.product_name)</th>
-                                    <th> @Html.DisplayNameFor(model => model.products.price_avgcost)</th>
-                                    <th> @Html.DisplayNameFor(model => model.products.price_sale)</th>
-                                    <th> @Html.DisplayNameFor(model => model.products.stock_qty)</th>
-                                    <th> @Html.DisplayNameFor(model => model.products.image_path)</th>
-                                    <th> @Html.ActionLink("新增記錄", "Create", "ProductBack", null, new { @class = "btn btn-primary" })</th>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.products.product_no)
+                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.category_name)
+                                        </td>*@
+                                    <td>
+                                        @Backend.GetCodeName(item.products.category_no)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.products.product_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.products.price_avgcost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.products.price_sale)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.products.stock_qty)
+                                    </td>
+                                    <td>
+
+                                        <img src="@string.Format("../../img/product/{0}/{1}.jpg?t={2}", item.products.category_no , item.products.product_no , DateTime.Now.ToString("yyyMMddHHmmss"))" style="width:80px;" alt="x" />
+                                    </td>
+
+                                    <td>
+
+                                        @Html.ActionLink("修改", "Edit", "ProductBack", new { id = item.products.product_no }, new { @class = "btn btn-success" })
+
+                                        @Html.ActionLink("刪除", "Delete", "ProductBack", new { id = item.products.product_no }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?')" })
+
+                                        <button class="btn btn-info" style="background-color:#FFE4E1"> @Html.ActionLink("上傳", "Upload", new { product_no = item.products.product_no })</button>
+
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-
-
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.products.product_no)
-                                        </td>
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.category_name)
-                                            </td>*@
-                                        <td>
-                                            @Backend.GetCodeName(item.products.category_no)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.products.product_name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.products.price_avgcost)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.products.price_sale)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.products.stock_qty)
-                                        </td>
-                                        <td>
-
-                                            <img src="@string.Format("../../img/product/{0}/{1}.jpg?t={2}", item.products.category_no , item.products.product_no , DateTime.Now.ToString("yyyMMddHHmmss"))" style="width:80px;" alt="x" />
-                                        </td>
-
-                                        <td>
-
-                                            @Html.ActionLink("修改", "Edit", "ProductBack", new { id = item.products.product_no }, new { @class = "btn btn-success" })
-
-                                            @Html.ActionLink("刪除", "Delete", "ProductBack", new { id = item.products.product_no }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?')" })
-
-                                            <button class="btn btn-info" style="background-color:#FFE4E1"> @Html.ActionLink("上傳", "Upload", new { product_no = item.products.product_no })</button>
-
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-
         </div>
- 
+    </div>
+
+</div>
+
 @*<script type="text/javascript">
         $(document).ready(function () {
             $('#bootstrap-data-table-export').DataTable({

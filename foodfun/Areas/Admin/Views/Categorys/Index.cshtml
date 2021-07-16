@@ -8,19 +8,21 @@
     string str_space = "＞";
 }
 
-<h2>商品分類設定</h2>
+
 
         <div class="row">
 
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title"> @ViewBag.Title</strong>
-
+                        <h2 class="text-center">
+                            <strong class="card-title "> @ViewBag.Title</strong>
+                        </h2>
+                        <hr />
                         @if (int_pid > 0)
                         {
                             <div>
-                                <h3>
+                                <h4>
                                     <b>
                                         <strong class="card-title">
                                             上層類別：
@@ -46,9 +48,9 @@
                                     @Html.ActionLink("回上一層", "ReturnToParent", "Categorys", new { Area = "Admin" }, new { @class = "btn btn-primary form-button" })
 
 
-                                </h3>
+                                </h4>
                             </div>
-                            <hr />
+
                         }
 
 
